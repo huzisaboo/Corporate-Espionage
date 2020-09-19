@@ -17,15 +17,15 @@ public class SteeringAgent : MonoBehaviour
 	public float mMaxSpeed = 1.0f;
 	public float mMaxForce = 10.0f;
 
-	public Vector3 mVelocity = Vector3.zero;
+	[HideInInspector] public Vector3 mVelocity = Vector3.zero;
 
 	private List<SteeringBehaviourBase> mSteeringBehaviours = new List<SteeringBehaviourBase>();
 
-	private Animator mAnimator;
+	public Animator mAnimator;
 
 	public float mAngularDampeningTime = 5.0f;
 	public float mDeadZone = 10.0f;
-
+	AnimationListener mListener;
 	void Start()
 	{
 		mSteeringBehaviours.AddRange(GetComponentsInChildren<SteeringBehaviourBase>());
@@ -33,15 +33,21 @@ public class SteeringAgent : MonoBehaviour
 		{
 			aBehaviour.mSteeringAgent = this;
 		}
-		mAnimator = GetComponent<Animator>();
+		mListener = mAnimator.GetComponent<AnimationListener>();
+		mListener.mOnAnimatorMove.AddListener(OnAnimMove);
 	}
 
-	void OnAnimatorMove()
+    void OnDestroy()
+    {
+		mListener.mOnAnimatorMove.RemoveListener(OnAnimMove);
+    }
+
+    void OnAnimMove()
 	{
 		if (Time.deltaTime > 0.0f)
 		{
 			Vector3 aVelocity = mAnimator.deltaPosition / Time.deltaTime;
-			transform.position += transform.forward * aVelocity.magnitude * Time.deltaTime;
+			transform.parent.position += transform.forward * aVelocity.magnitude * Time.deltaTime;
 		}
 	}
 
@@ -51,7 +57,7 @@ public class SteeringAgent : MonoBehaviour
 		{
 			return;
 		}
-		Vector3 aSteeringForce = calculateSteeringForce();
+		Vector3 aSteeringForce = CalculateForce();
 		aSteeringForce.y = 0.0f;
 
 		Vector3 aAcceleration = aSteeringForce * (1.0f / mMass);
@@ -78,7 +84,7 @@ public class SteeringAgent : MonoBehaviour
 		}
 	}
 
-	private Vector3 calculateSteeringForce()
+	private Vector3 CalculateForce()
 	{
 		Vector3 aTotalForce = Vector3.zero;
 

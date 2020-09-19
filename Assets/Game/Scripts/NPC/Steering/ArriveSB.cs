@@ -17,6 +17,11 @@ public class ArriveSB : SeekSB
     [SerializeField] float mStoppingDistance = 0.5f;
     [HideInInspector] public bool mPathComplete = true;
 
+    void Start()
+    {
+        mTarget = transform.position;
+    }
+
     public override void CalculateNewPath(Vector3 pPathTarget)
     {
         mPathComplete = false;
@@ -25,7 +30,7 @@ public class ArriveSB : SeekSB
 
     public override Vector3 CalculateForce()
     {
-        Vector3 aDistanceVector = mTarget - transform.parent.position;
+        Vector3 aDistanceVector = mTarget - transform.position;
 
         float aMag = aDistanceVector.magnitude;
 
@@ -60,7 +65,7 @@ public class ArriveSB : SeekSB
             return;
         }
         base.OnDrawGizmos();
-        DebugExtension.DebugCircle(transform.parent.position, Color.green, mSlowDownDistance);
+        DebugExtension.DebugCircle(transform.position, Color.green, mSlowDownDistance);
     }
 
 }
