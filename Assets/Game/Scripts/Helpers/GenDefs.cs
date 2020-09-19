@@ -75,3 +75,33 @@ public interface IAnimationCompleted
     void AnimationCompleted(int pShortHashName);
 }
 
+[Serializable]
+public enum NPCType
+{
+    MissionNPC,
+    NormalNPC
+}
+
+[Serializable]
+public enum DrinkBase
+{
+    Rum,
+    Whiskey,
+    Vodka,
+    Gin,
+    Beer,
+    Wine,
+    Tequila
+}
+
+[Serializable]
+public enum DrinkMixer
+{
+    Coffee,
+    Chocolate,
+    LemonWater,
+    GingerAle,
+    TomatoJuice,
+    OrangeJuice,
+    SoftDrink
+}
