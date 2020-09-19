@@ -13,13 +13,28 @@ using UnityEngine;
 public class CompanyNPC : MonoBehaviour
 {
     public NPCType mNPCMode;
-
     public Animator mAnimator;
     public AnimationListener mAnimListener;
     public SteeringAgent mAgent;
     public ArriveSB mArriveBehavior;
     public ObstacleAvoidanceSB mObstacleBehavior;
     public int mMaxIdleIx = 5;
-    public int mIdleIndex = 0;
+    public NPCProps mDebugNPCProp;
+
+    [HideInInspector] public NPCProps mNPCProps;
+    [HideInInspector] public int mIdleIndex = 0;
+
+    void Start()
+    {
+        if (mDebugNPCProp == null)
+        {
+            mNPCProps = mNPCMode == NPCType.MissionNPC ? NPCManager.Instance.GetMissionNPC() :
+                NPCManager.Instance.GetNormalNPC();
+        }
+        else
+        {
+            mNPCProps = mDebugNPCProp;
+        }
+    }
 
 }
