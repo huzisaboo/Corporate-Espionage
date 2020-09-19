@@ -12,5 +12,29 @@ using UnityEngine;
 
 public class NPCManager : Singleton<NPCManager>
 {
+    public List<NPCProps> mMissionNPCs;
+    public List<NPCProps> mNormalNPCs;
+
+    public List<Transform> mPointsOfInterest;
+    public List<Transform> mBarLocation;
+    public GameMode mMode = GameMode.Bartender;
+    [HideInInspector] public int mNPCsAtBar = 0;
+    public int mMaxBarNPCs = 4;
+    public int mMaxRaiseServer = 3;
+    [HideInInspector] public int mRaiseServer = 0;
+    public NPCProps GetMissionNPC()
+    {
+        int aNPCIx = Random.Range(0, mMissionNPCs.Count);
+        NPCProps aProp = mMissionNPCs[aNPCIx];
+        mMissionNPCs.RemoveAt(aNPCIx);
+        return aProp;
+    }
+
+    public NPCProps GetNormalNPC()
+    {
+        int aNPCIx = Random.Range(0, mNormalNPCs.Count);
+        NPCProps aProp = mNormalNPCs[aNPCIx];
+        return aProp;
+    }
 
 }

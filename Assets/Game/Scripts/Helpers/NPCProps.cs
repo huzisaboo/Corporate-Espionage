@@ -12,6 +12,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NPCProps", menuName = "NPC/NPC Properties")]
 public class NPCProps : ScriptableObject
 {
+    [HideInInspector] public float mInebriationState = 0.0f;
     public NPCType mNPCType;
     [Range(0.0f, 1.0f)] public float mDrunkThreshold;
     [Range(0.0f, 1.0f)] public float mPassoutThreshold;
