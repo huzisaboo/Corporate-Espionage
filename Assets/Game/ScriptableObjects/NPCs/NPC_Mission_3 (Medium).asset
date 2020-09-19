@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8fb029954dfbe3e4194961108c011868, type: 3}
-  m_Name: NPC_3 (Medium)
+  m_Name: NPC_Mission_3 (Medium)
   m_EditorClassIdentifier: 
   mNPCType: 0
   mDrunkThreshold: 0.6

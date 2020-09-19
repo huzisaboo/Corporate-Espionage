@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8fb029954dfbe3e4194961108c011868, type: 3}
-  m_Name: NPC_0 (Easy)
+  m_Name: NPC_Mission_5 (Hard)
   m_EditorClassIdentifier: 
   mNPCType: 0
-  mDrunkThreshold: 0.6
+  mDrunkThreshold: 0.8
   mPassoutThreshold: 0.95
-  mPreferredDrinks: 000000000300000002000000
-  mColor: {r: 0.11755096, g: 0.7924528, b: 0.10840159, a: 1}
+  mPreferredDrinks: 01000000
+  mColor: {r: 0.7075472, g: 0.110137075, b: 0.110137075, a: 1}

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8fb029954dfbe3e4194961108c011868, type: 3}
-  m_Name: NPC_2 (Easy)
+  m_Name: NPC_Normal_0
   m_EditorClassIdentifier: 
-  mNPCType: 0
-  mDrunkThreshold: 0.45
-  mPassoutThreshold: 0.7
-  mPreferredDrinks: 06000000020000000000000003000000
-  mColor: {r: 0.11755096, g: 0.7924528, b: 0.10840159, a: 1}
+  mNPCType: 1
+  mDrunkThreshold: 0.4
+  mPassoutThreshold: 0.75
+  mPreferredDrinks: 01000000
+  mColor: {r: 0.6792453, g: 0.5479394, b: 0.2787469, a: 1}
