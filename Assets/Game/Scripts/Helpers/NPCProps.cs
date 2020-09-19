@@ -16,4 +16,5 @@ public class NPCProps : ScriptableObject
     [Range(0.0f, 1.0f)] public float mDrunkThreshold;
     [Range(0.0f, 1.0f)] public float mPassoutThreshold;
     public List<DrinkBase> mPreferredDrinks;
+    public Color mColor;
 }

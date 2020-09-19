@@ -60,10 +60,10 @@ Material:
     - _BottomLeftColor: {r: 1, g: 1, b: 1, a: 1}
     - _BottomRightColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color1: {r: 1, g: 1, b: 1, a: 1}
+    - _Color1: {r: 1, g: 0, b: 0, a: 0}
     - _Color2: {r: 1, g: 1, b: 1, a: 1}
     - _Color3: {r: 1, g: 1, b: 1, a: 1}
-    - _Color4: {r: 0, g: 0, b: 0, a: 1}
+    - _Color4: {r: 1, g: 0.22772029, b: 0, a: 1}
     - _ColorB: {r: 1, g: 0.89851844, b: 0, a: 1}
     - _ColorG: {r: 0, g: 1, b: 0.81814814, a: 1}
     - _ColorR: {r: 0, g: 0, b: 0, a: 1}
