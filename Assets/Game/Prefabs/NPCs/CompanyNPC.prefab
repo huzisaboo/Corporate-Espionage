@@ -154,7 +154,7 @@ MonoBehaviour:
   mSteeringAgent: {fileID: 0}
   mSlowDownDistance: 5
   mDeceleration: 2.5
-  mStoppingDistance: 0.5
+  mStoppingDistance: 2
   mPathComplete: 1
 --- !u!1 &3423780387925872999
 GameObject:
@@ -203,12 +203,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mActive: 1
   mMass: 1
-  mMaxSpeed: 1
+  mMaxSpeed: 2
   mMaxForce: 10
   mVelocity: {x: 0, y: 0, z: 0}
   mAnimator: {fileID: 5360483130075565001}
   mAngularDampeningTime: 5
-  mDeadZone: 10
+  mDeadZone: 5
 --- !u!114 &3423780387889197970
 MonoBehaviour:
   m_ObjectHideFlags: 0
