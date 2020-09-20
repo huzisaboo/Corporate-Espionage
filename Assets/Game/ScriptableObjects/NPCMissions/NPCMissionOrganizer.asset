@@ -15,3 +15,4 @@ MonoBehaviour:
   NPCDepartments:
   - {fileID: 11400000, guid: cbef2a9f5afdd9d4db0fa20154dbf0f9, type: 2}
   - {fileID: 11400000, guid: 0bbeadc93ef806c409a14a9382322dbc, type: 2}
+  - {fileID: 11400000, guid: 47a0d3498b0f6ba4d9a4dec76a199449, type: 2}
