@@ -16,7 +16,7 @@ MonoBehaviour:
   departmentBadge: {fileID: 8365849061059946536, guid: f01a3ee1c50855e418fdfa945b849230,
     type: 3}
   departmentMissions:
-  - {fileID: 11400000, guid: 89089ce35d73ee941a797cb5d18d5c86, type: 2}
-  - {fileID: 11400000, guid: 8596ba820fef1bd449cac823ac082bd7, type: 2}
-  - {fileID: 11400000, guid: 15d2bff088b0e904f922f779d621e0cc, type: 2}
-  - {fileID: 11400000, guid: 44ac0bb386fc88c409761f795cdcddeb, type: 2}
+  - {fileID: 11400000, guid: d3f32990ec79b9f478c59f0f1117510e, type: 2}
+  - {fileID: 11400000, guid: 04f51e7630bf2f341934fa2aa3fa393e, type: 2}
+  - {fileID: 11400000, guid: e11c2151724aa254199f87c57300b46d, type: 2}
+  - {fileID: 11400000, guid: 08a08e840ca222940b6c232eef6b1267, type: 2}
