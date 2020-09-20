@@ -19,23 +19,19 @@ public class CompanyNPC : MonoBehaviour
     public ArriveSB mArriveBehavior;
     public ObstacleAvoidanceSB mObstacleBehavior;
     public int mMaxIdleIx = 5;
-    public NPCProps mDebugNPCProp;
-
+    public SkinnedMeshRenderer mRenderer;
     [HideInInspector] public NPCProps mNPCProps;
     [HideInInspector] public int mIdleIndex = 0;
     [HideInInspector] public float mCurrentDrinkAmnt = 0;
     [HideInInspector] public bool mPassedOut = false;
+    Material mMatCopy;
     void Start()
     {
         NPCManager.Instance.mTotalNPCs.Add(this);
-        if (mDebugNPCProp == null)
-        {
-            mNPCProps = mNPCMode == NPCType.MissionNPC ? NPCManager.Instance.GetMissionNPC() :
-                NPCManager.Instance.GetNormalNPC();
-        }
-        else
-        {
-            mNPCProps = mDebugNPCProp;
-        }
+        mNPCProps = mNPCMode == NPCType.MissionNPC ? NPCManager.Instance.GetMissionNPC() :
+            NPCManager.Instance.GetNormalNPC();
+        mMatCopy = mRenderer.material;
+        mMatCopy.SetColor("_Color4", mNPCProps.mColor);
+        mRenderer.material = mMatCopy;
     }
 }
