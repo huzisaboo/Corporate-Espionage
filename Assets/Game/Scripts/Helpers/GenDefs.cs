@@ -81,6 +81,12 @@ public enum NPCType
     MissionNPC,
     NormalNPC
 }
+[Serializable]
+public enum GameMode
+{
+    Bartender,
+    Server
+}
 
 [Serializable]
 public enum DrinkBase
