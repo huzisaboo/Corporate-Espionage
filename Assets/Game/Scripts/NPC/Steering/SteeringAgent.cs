@@ -70,14 +70,14 @@ public class SteeringAgent : MonoBehaviour
 
 		if (aSpeed > 0.0f)
 		{
-			float aAngle = Vector3.Angle(transform.forward, mVelocity);
+			float aAngle = Vector3.Angle(transform.parent.forward, mVelocity);
 			if (Mathf.Abs(aAngle) <= mDeadZone)
 			{
-				transform.LookAt(transform.position + mVelocity);
+				transform.parent.LookAt(transform.position + mVelocity);
 			}
 			else
 			{
-				transform.rotation = Quaternion.Slerp(transform.rotation,
+				transform.parent.rotation = Quaternion.Slerp(transform.parent.rotation,
 													  Quaternion.LookRotation(mVelocity),
 													  Time.deltaTime * mAngularDampeningTime);
 			}

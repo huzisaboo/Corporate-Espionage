@@ -16,6 +16,9 @@ public class NPCProps : ScriptableObject
     public NPCType mNPCType;
     [Range(0.0f, 1.0f)] public float mDrunkThreshold;
     [Range(0.0f, 1.0f)] public float mPassoutThreshold;
+    public float mBarWaitTime;
+    public float mServerWaitTime;
+    public int mMaxDrinksAtBar;
     public List<DrinkBase> mPreferredDrinks;
     public Color mColor;
     public NPCDepartment mNPCDepartment;

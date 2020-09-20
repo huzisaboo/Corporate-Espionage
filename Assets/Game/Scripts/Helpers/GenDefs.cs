@@ -100,15 +100,3 @@ public enum DrinkBase
     Tequila,
     Brandy
 }
-
-[Serializable]
-public enum DrinkMixer
-{
-    Coffee,
-    Chocolate,
-    LemonWater,
-    GingerAle,
-    TomatoJuice,
-    OrangeJuice,
-    SoftDrink
-}

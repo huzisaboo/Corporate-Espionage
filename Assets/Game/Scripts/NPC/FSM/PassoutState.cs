@@ -1,25 +1,20 @@
 ﻿///-------------------------------------------------------------------------------------------------
-// File: BaseNPCState.cs
+// File: PassoutState.cs
 //
 // Author: Dakshvir Singh Rehill
-// Date: 19/09/2020
+// Date: 20/9/2020
 //
-// Summary:	NPC State Machine's basic state
+// Summary:	Passout State Machine when NPC passes out because of the drunkenness
 ///-------------------------------------------------------------------------------------------------
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseNPCState : StateMachineBehaviour
+public class PassoutState : BaseNPCState
 {
-    protected CompanyNPC mCompanyNPC;
-    protected Animator mFSM;
     public override void OnStateEnter(Animator pFSM, AnimatorStateInfo pStateInfo, int pLayerIndex)
     {
-        if(mCompanyNPC == null)
-        {
-            mCompanyNPC = pFSM.transform.parent.gameObject.GetComponent<CompanyNPC>();
-            mFSM = pFSM;
-        }
+        base.OnStateEnter(pFSM, pStateInfo, pLayerIndex);
+        //play passout anim
     }
 }

@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fb029954dfbe3e4194961108c011868, type: 3}
   m_Name: NPC_Normal_2
   m_EditorClassIdentifier: 
+  mInebriationState: 0
   mNPCType: 1
   mDrunkThreshold: 0.25
   mPassoutThreshold: 0.5
+  mBarWaitTime: 5
+  mServerWaitTime: 10
+  mMaxDrinksAtBar: 3
   mPreferredDrinks: 05000000
   mColor: {r: 0.5660378, g: 0.056069776, b: 0.4300029, a: 1}

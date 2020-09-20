@@ -20,6 +20,7 @@ public class IdleState : BaseNPCState
     [SerializeField] string mDecideActionStateTrigger = "DecideAction";
     [SerializeField] string mIdleBase = "Idle";
     int mCurIdleHash = -1;
+    bool mTriggerSet = false;
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         if (mCompanyNPC == null)
@@ -30,16 +31,22 @@ public class IdleState : BaseNPCState
         mIdleStayTime = Random.Range(mMinIdleTime, mMaxIdleTime);
         mCurrentIdleTime = 0.0f;
         SetIdleState(-1);
+        mTriggerSet = false;
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        if (mTriggerSet)
+        {
+            return;
+        }
         //wait for given idle time before going to resolve state
         if (mCurrentIdleTime < mIdleStayTime)
         {
             mCurrentIdleTime += Time.deltaTime;
             return;
         }
+        mTriggerSet = true;
         animator.SetTrigger(mDecideHash);
     }
 
