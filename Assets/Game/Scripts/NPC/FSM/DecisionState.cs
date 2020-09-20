@@ -71,7 +71,6 @@ public class DecisionState : BaseNPCState
             return false;
         }
         NPCManager.Instance.mNPCsAtBar++;
-        NPCManager.Instance.mVisitedBar.Add(mCompanyNPC);
         mCompanyNPC.mArriveBehavior.CalculateNewPath(NPCManager.Instance.mBarLocation
             [NPCManager.Instance.mNPCsAtBar - 1].position);
         pFSM.SetTrigger(mGoToBarHash);

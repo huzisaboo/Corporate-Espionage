@@ -35,6 +35,9 @@ public class RaiseServerState : BaseNPCState
         mCurrentServerWaitTime = 0.0f;
         mStateTriggered = false;
         mCompanyNPC.mAnimator.SetTrigger(mRaiseServerHash);
+        mCompanyNPC.mPlayerUI.gameObject.SetActive(true);
+        mCompanyNPC.mPlayerUI.mTimerImage.gameObject.SetActive(true);
+        mCompanyNPC.mPlayerUI.mDrinkImage.gameObject.SetActive(true);
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -44,6 +47,7 @@ public class RaiseServerState : BaseNPCState
             return;
         }
         mCurrentServerWaitTime += Time.deltaTime;
+        mCompanyNPC.mPlayerUI.mTimerImage.fillAmount = (mCompanyNPC.mNPCProps.mServerWaitTime - mCurrentServerWaitTime) / mCompanyNPC.mNPCProps.mServerWaitTime;
         if (mCurrentServerWaitTime >= mCompanyNPC.mNPCProps.mServerWaitTime)
         {
             //game over
@@ -57,5 +61,12 @@ public class RaiseServerState : BaseNPCState
                 mStateTriggered = true;
             }
         }
+    }
+
+    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        mCompanyNPC.mPlayerUI.mDrinkImage.gameObject.SetActive(false);
+        mCompanyNPC.mPlayerUI.mTimerImage.gameObject.SetActive(false);
+        mCompanyNPC.mPlayerUI.gameObject.SetActive(false);
     }
 }

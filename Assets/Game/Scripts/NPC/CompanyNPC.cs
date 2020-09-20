@@ -20,6 +20,7 @@ public class CompanyNPC : MonoBehaviour
     public ObstacleAvoidanceSB mObstacleBehavior;
     public int mMaxIdleIx = 5;
     public SkinnedMeshRenderer mRenderer;
+    public BarDrinkServe mPlayerUI;
     [HideInInspector] public NPCProps mNPCProps;
     [HideInInspector] public int mIdleIndex = 0;
     [HideInInspector] public float mCurrentDrinkAmnt = 0;

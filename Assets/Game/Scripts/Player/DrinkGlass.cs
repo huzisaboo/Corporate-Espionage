@@ -20,7 +20,7 @@ public class DrinkGlass : MonoBehaviour
 
     public void IncAlcoholPercentage(float p_value)
     {
-        Debug.Log(p_value);
+        Debug.Log(m_alcoholPercentage);
         m_alcoholPercentage += p_value;
     }
 
