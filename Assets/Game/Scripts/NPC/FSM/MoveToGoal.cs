@@ -12,5 +12,22 @@ using UnityEngine;
 
 public class MoveToGoal : BaseNPCState
 {
+    [SerializeField] string mReachedTrigger = "Reached";
+    int mReachedHash = -1;
 
+    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        if (mCompanyNPC == null)
+        {
+            mReachedHash = Animator.StringToHash(mReachedTrigger);
+        }
+        base.OnStateEnter(animator, stateInfo, layerIndex);
+    }
+    public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        if (mCompanyNPC.mArriveBehavior.mPathComplete)
+        {
+            animator.SetTrigger(mReachedHash);
+        }
+    }
 }
