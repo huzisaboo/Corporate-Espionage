@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81278251e87892549bbc3bf7f71234b0, type: 3}
-  m_Name: 3-4
+  m_Script: {fileID: 11500000, guid: 48fac02f407723d46b85ec455890df8d, type: 3}
+  m_Name: Drink 7
   m_EditorClassIdentifier: 
-  missionName: Research
-  missionBadge: {fileID: -7622792721858553673, guid: f01a3ee1c50855e418fdfa945b849230,
-    type: 3}
+  m_drinkType: 7
+  m_concentration: 0.07
+  m_drinkColor: {r: 0.745283, g: 0.3561735, b: 0.0738252, a: 0}

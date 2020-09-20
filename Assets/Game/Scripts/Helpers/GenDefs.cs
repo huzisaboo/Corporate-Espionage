@@ -97,7 +97,8 @@ public enum DrinkBase
     Gin,
     Beer,
     Wine,
-    Tequila
+    Tequila,
+    Brandy
 }
 
 [Serializable]
