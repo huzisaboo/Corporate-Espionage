@@ -12,9 +12,17 @@ using UnityEngine;
 
 public class PassoutState : BaseNPCState
 {
+    [SerializeField] string mBodyVertFloat = "BodyVert";
+    int mBVHash = -1;
+
     public override void OnStateEnter(Animator pFSM, AnimatorStateInfo pStateInfo, int pLayerIndex)
     {
+        if(mCompanyNPC == null)
+        {
+            mBVHash = Animator.StringToHash(mBodyVertFloat);
+        }
         base.OnStateEnter(pFSM, pStateInfo, pLayerIndex);
-        //play passout anim
+        mCompanyNPC.mAnimator.SetLayerWeight(1, 1);
+        mCompanyNPC.mAnimator.SetFloat(mBVHash, 1.0f);
     }
 }

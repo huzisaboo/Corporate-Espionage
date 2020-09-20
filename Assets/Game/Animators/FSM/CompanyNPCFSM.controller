@@ -162,9 +162,10 @@ MonoBehaviour:
   mServerRadius: 5
   mServerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   mResetTrigger: Reached
-  mResetHash: -1
+  mRaiseServerTrigger: RaiseServer
+  mServerEndTrigger: ServerEnd
 --- !u!114 &-4749943404650347783
 MonoBehaviour:
   m_ObjectHideFlags: 1
