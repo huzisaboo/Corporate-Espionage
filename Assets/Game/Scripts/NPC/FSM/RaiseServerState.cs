@@ -17,6 +17,9 @@ public class RaiseServerState : BaseNPCState
     [SerializeField] LayerMask mServerMask;
     [SerializeField] string mResetTrigger = "Reached";
     [SerializeField] int mResetHash = -1;
+
+    bool mStateTriggered = false;
+
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         if(mCompanyNPC == null)
@@ -25,10 +28,15 @@ public class RaiseServerState : BaseNPCState
         }
         base.OnStateEnter(animator, stateInfo, layerIndex);
         mCurrentServerWaitTime = 0.0f;
+        mStateTriggered = false;
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        if(mStateTriggered)
+        {
+            return;
+        }
         mCurrentServerWaitTime += Time.deltaTime;
         if(mCurrentServerWaitTime >= mCompanyNPC.mNPCProps.mServerWaitTime)
         {
@@ -39,6 +47,7 @@ public class RaiseServerState : BaseNPCState
             if(Physics.OverlapSphere(mCompanyNPC.transform.position, mServerRadius,mServerMask).Length > 0)
             {
                 animator.SetTrigger(mResetHash);
+                mStateTriggered = true;
             }
         }
     }

@@ -36,6 +36,8 @@ public class BarState : BaseNPCState
         Drinking
     }
 
+    bool mStateTriggered = false;
+
     public override void OnStateEnter(Animator pFSM, AnimatorStateInfo pStateInfo, int pLayerIndex)
     {
         if (mCompanyNPC == null)
@@ -50,10 +52,15 @@ public class BarState : BaseNPCState
         mDrinkTriggered = false;
         mNPCState = InternalBarState.Waiting;
         SetIdleState(-1);
+        mStateTriggered = false;
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        if(mStateTriggered)
+        {
+            return;
+        }
         switch (mNPCState)
         {
             case InternalBarState.Waiting:
@@ -98,6 +105,7 @@ public class BarState : BaseNPCState
         mCompanyNPC.mArriveBehavior.CalculateNewPath(NPCManager.Instance.mPointsOfInterest
         [Random.Range(0, NPCManager.Instance.mPointsOfInterest.Count)].position);
         mFSM.SetTrigger(mTableHash);
+        mStateTriggered = true;
     }
 
     void NPCAttended()
@@ -126,6 +134,7 @@ public class BarState : BaseNPCState
         if (mCompanyNPC.mPassedOut)
         {
             mFSM.SetTrigger(mPassoutHash);
+            mStateTriggered = true;
         }
         else if (mDrinksAtBar >= mCompanyNPC.mNPCProps.mMaxDrinksAtBar)
         {

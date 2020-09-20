@@ -14,7 +14,7 @@ public class MoveToGoal : BaseNPCState
 {
     [SerializeField] string mReachedTrigger = "Reached";
     int mReachedHash = -1;
-
+    bool mStateTriggered = false;
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         if (mCompanyNPC == null)
@@ -22,12 +22,18 @@ public class MoveToGoal : BaseNPCState
             mReachedHash = Animator.StringToHash(mReachedTrigger);
         }
         base.OnStateEnter(animator, stateInfo, layerIndex);
+        mStateTriggered = false;
     }
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        if(mStateTriggered)
+        {
+            return;
+        }
         if (mCompanyNPC.mArriveBehavior.mPathComplete)
         {
             animator.SetTrigger(mReachedHash);
+            mStateTriggered = true;
         }
     }
 }
