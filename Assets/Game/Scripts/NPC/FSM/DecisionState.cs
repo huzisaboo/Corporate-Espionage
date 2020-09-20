@@ -58,6 +58,10 @@ public class DecisionState : BaseNPCState
 
     bool MakeDecisionForBar(Animator pFSM)
     {
+        if(NPCManager.Instance.mVisitedBar.Contains(mCompanyNPC))
+        {
+            return false;
+        }
         if(mCompanyNPC.mNPCProps.mInebriationState > mCompanyNPC.mNPCProps.mDrunkThreshold)
         {
             return false;
@@ -67,6 +71,7 @@ public class DecisionState : BaseNPCState
             return false;
         }
         NPCManager.Instance.mNPCsAtBar++;
+        NPCManager.Instance.mVisitedBar.Add(mCompanyNPC);
         mCompanyNPC.mArriveBehavior.CalculateNewPath(NPCManager.Instance.mBarLocation
             [NPCManager.Instance.mNPCsAtBar - 1].position);
         pFSM.SetTrigger(mGoToBarHash);

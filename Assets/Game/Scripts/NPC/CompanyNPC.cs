@@ -23,9 +23,11 @@ public class CompanyNPC : MonoBehaviour
 
     [HideInInspector] public NPCProps mNPCProps;
     [HideInInspector] public int mIdleIndex = 0;
-
+    [HideInInspector] public float mCurrentDrinkAmnt = 0;
+    [HideInInspector] public bool mPassedOut = false;
     void Start()
     {
+        NPCManager.Instance.mTotalNPCs.Add(this);
         if (mDebugNPCProp == null)
         {
             mNPCProps = mNPCMode == NPCType.MissionNPC ? NPCManager.Instance.GetMissionNPC() :
@@ -36,5 +38,4 @@ public class CompanyNPC : MonoBehaviour
             mNPCProps = mDebugNPCProp;
         }
     }
-
 }

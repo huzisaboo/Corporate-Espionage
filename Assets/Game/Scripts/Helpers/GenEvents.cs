@@ -24,3 +24,4 @@ public class SceneLoadedEvent : UnityEvent<List<string>> { }
 [Serializable]
 public class AnimationCompletedEvent : UnityEvent<int> { }
 
+public class GameModeChangedEvent : UnityEvent<GameMode> { }
