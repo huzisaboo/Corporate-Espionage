@@ -26,6 +26,13 @@ public class PlayerDialog : MonoBehaviour
     bool isShowingDefault = false;
     bool showingInformation = false;
 
+    private int missionProgress = 0;
+    public int MissionProgress
+    {
+        get { return missionProgress; }
+        set { missionProgress = value; OnUpdateMissionProgress?.Invoke(missionProgress); }
+    }
+
     //Time
     [Range(0,1)]public float symbolDisplayFactor = 1;
     public float startTime;
@@ -127,6 +134,10 @@ public class PlayerDialog : MonoBehaviour
         Image spriteSymbol = GameObject.Instantiate(symbol, dialogContentParent).GetComponent<Image>();
         spriteSymbol.transform.SetSiblingIndex(Random.Range(0, dialogContentParent.childCount));
         spriteSymbol.sprite = symbolSprite;
-        Debug.LogError("INFORMATION SHOWN ++");
+        MissionProgress++;
+        Debug.LogError("INFORMATION SHOWN" + MissionProgress);
     }
+
+    public delegate void UpdateProgress(int _progress);
+    public event UpdateProgress OnUpdateMissionProgress;
 }
