@@ -14,7 +14,7 @@ public class PassoutState : BaseNPCState
 {
     [SerializeField] string mBodyVertFloat = "BodyVert";
     int mBVHash = -1;
-
+    [SerializeField] float mPassoutTime = 4.0f;
     public override void OnStateEnter(Animator pFSM, AnimatorStateInfo pStateInfo, int pLayerIndex)
     {
         if(mCompanyNPC == null)
@@ -24,5 +24,14 @@ public class PassoutState : BaseNPCState
         base.OnStateEnter(pFSM, pStateInfo, pLayerIndex);
         mCompanyNPC.mAnimator.SetLayerWeight(1, 1);
         mCompanyNPC.mAnimator.SetFloat(mBVHash, 1.0f);
+    }
+
+    public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        mPassoutTime -= Time.deltaTime;
+        if(mPassoutTime <= 0.0f)
+        {
+            mCompanyNPC.gameObject.SetActive(false);
+        }
     }
 }
