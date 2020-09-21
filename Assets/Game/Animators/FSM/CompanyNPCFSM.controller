@@ -270,6 +270,7 @@ MonoBehaviour:
   mRayMask:
     serializedVersion: 2
     m_Bits: 1024
+  mBarClassifier: {fileID: 11400000, guid: 81e50ad49e139c941b088ba6a4466d55, type: 2}
 --- !u!1101 &-1097757033890394859
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -424,6 +425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c1021b3a1ea1c34891286d76bbc92a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mBodyVertFloat: BodyVert
 --- !u!1101 &2868930630246782238
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

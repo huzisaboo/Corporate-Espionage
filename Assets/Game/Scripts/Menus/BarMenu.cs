@@ -24,6 +24,7 @@ public class BarMenu : Menu
 
     public override void Start()
     {
+        base.Start();
         foreach (Drink aDrink in mAllDrinks)
         {
             if (mDrinks.ContainsKey(aDrink.m_drinkType))
@@ -32,7 +33,6 @@ public class BarMenu : Menu
             }
             mDrinks.Add(aDrink.m_drinkType, aDrink);
         }
-        base.Start();
     }
 
     void Update()

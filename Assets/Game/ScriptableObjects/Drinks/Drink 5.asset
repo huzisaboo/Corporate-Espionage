@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_drinkType: 5
   m_concentration: 0.05
-  m_drinkColor: {r: 0.6603774, g: 0.07164473, b: 0.124816604, a: 0}
+  m_drinkColor: {r: 0.6603774, g: 0.07164473, b: 0.124816604, a: 1}

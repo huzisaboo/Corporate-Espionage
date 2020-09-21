@@ -22,8 +22,12 @@ public class DrinkGlass : MonoBehaviour
 
     public void IncAlcoholPercentage(float p_value)
     {
-        m_alcoholPercentage += p_value * 0.01f;
+        m_alcoholPercentage += p_value * 0.1f;
         m_alcoholPercentage = Mathf.Clamp(m_alcoholPercentage, 0, 1);
+        if(m_LiquidPvt == null)
+        {
+            m_LiquidPvt = liquid.transform.parent;
+        }
         m_LiquidPvt.localScale = new Vector3
             (m_LiquidPvt.localScale.x, m_alcoholPercentage, m_LiquidPvt.localScale.z);
     }
