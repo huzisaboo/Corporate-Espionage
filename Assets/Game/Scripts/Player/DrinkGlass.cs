@@ -9,16 +9,6 @@ public class DrinkGlass : MonoBehaviour
     private MeshRenderer m_liquidMr;
     private Transform m_LiquidPvt;
     public DrinkBase mDrinkType;
-    // Start is called before the first frame update
-    void Start()
-    {
-        if (liquid != null)
-        {
-            m_liquidMr = liquid.GetComponent<MeshRenderer>();
-            m_LiquidPvt = liquid.transform.parent;
-        }
-    }
-
 
     public void IncAlcoholPercentage(float p_value)
     {

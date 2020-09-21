@@ -21,7 +21,7 @@ public class GameManager : Singleton<GameManager>
 
     public SceneReference mGameScene;
     public SceneReference mUIScene;
-    public State mState = State.NonGame;
+    [HideInInspector] public State mState = State.NonGame;
 
     void Awake()
     {
@@ -32,6 +32,11 @@ public class GameManager : Singleton<GameManager>
     {
         MultiSceneManager.Instance.mOnSceneLoad.AddListener(OnSceneLoad);
         MultiSceneManager.Instance.mOnSceneUnload.AddListener(OnSceneUnload);
+        if(string.IsNullOrEmpty(mUIScene)) //remove after testing
+        {
+            mState = State.Game;
+            return;
+        }
         MultiSceneManager.Instance.LoadScene(mUIScene);
     }
 

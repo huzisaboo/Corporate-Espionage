@@ -56,6 +56,10 @@ public class IdleState : BaseNPCState
 
     void SetIdleState(int pIx)
     {
+        if (mCurIdleHash != -1)
+        {
+            mCompanyNPC.mAnimListener.UnregisterOnAnimationCompleted(mCurIdleHash, SetIdleState);
+        }
         mCompanyNPC.mIdleIndex = Random.Range(0, mCompanyNPC.mMaxIdleIx);
         mCurIdleHash = Animator.StringToHash(mIdleBase + mCompanyNPC.mIdleIndex);
         mCompanyNPC.mAnimListener.RegisterOnAnimationCompleted(mCurIdleHash, SetIdleState);

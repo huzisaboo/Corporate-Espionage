@@ -671,7 +671,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 225213179}
   m_OnClick:
     m_PersistentCalls:
@@ -1536,6 +1536,8 @@ GameObject:
   m_Component:
   - component: {fileID: 716542747}
   - component: {fileID: 716542746}
+  - component: {fileID: 716542748}
+  - component: {fileID: 716542749}
   m_Layer: 0
   m_Name: TempSingleton
   m_TagString: Untagged
@@ -1570,6 +1572,40 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &716542748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716542745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8456a1fc3571fe4ba8371d306bf6bed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mGameScene:
+    sceneAsset: {fileID: 0}
+    scenePath: 
+    sceneName: 
+  mUIScene:
+    sceneAsset: {fileID: 0}
+    scenePath: 
+    sceneName: 
+  mState: 0
+--- !u!114 &716542749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716542745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b3b26bb7fe3dac4aaf7bc77f4a028f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mDelayTime: 1
 --- !u!1 &748044385
 GameObject:
   m_ObjectHideFlags: 0
@@ -2447,10 +2483,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: abd7215c8227e3442bcb59327c1070f9, type: 2}
   - {fileID: 11400000, guid: 95643ba94ade0064bbc3c30a58bbd6c4, type: 2}
   - {fileID: 11400000, guid: a030a97618ee7f5438b2ab0b287867b4, type: 2}
-  mButtons: {fileID: 0}
-  mDrinkSelections: {fileID: 0}
+  mButtons: {fileID: 2101299031}
+  mDrinkSelections: {fileID: 777000867}
   mActiveDrinkMaker: {fileID: 0}
-  mPourBtn: {fileID: 0}
+  mPourBtn: {fileID: 1723457586}
 --- !u!225 &1324115471
 CanvasGroup:
   m_ObjectHideFlags: 0
