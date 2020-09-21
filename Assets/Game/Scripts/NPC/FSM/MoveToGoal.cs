@@ -26,7 +26,11 @@ public class MoveToGoal : BaseNPCState
     }
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(mStateTriggered)
+        if (GameManager.Instance.mState != GameManager.State.Game)
+        {
+            return;
+        }
+        if (mStateTriggered)
         {
             return;
         }
