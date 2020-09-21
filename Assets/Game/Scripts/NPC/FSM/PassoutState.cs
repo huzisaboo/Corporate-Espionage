@@ -12,22 +12,25 @@ using UnityEngine;
 
 public class PassoutState : BaseNPCState
 {
-    [SerializeField] string mBodyVertFloat = "BodyVert";
     int mBVHash = -1;
     [SerializeField] float mPassoutTime = 4.0f;
-    public override void OnStateEnter(Animator pFSM, AnimatorStateInfo pStateInfo, int pLayerIndex)
+    [SerializeField] string mBodyVertFloat = "BodyVert";
+    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         if(mCompanyNPC == null)
         {
             mBVHash = Animator.StringToHash(mBodyVertFloat);
         }
-        base.OnStateEnter(pFSM, pStateInfo, pLayerIndex);
+        base.OnStateEnter(animator, stateInfo, layerIndex);
+        mCompanyNPC.mAnimator.SetFloat(mBVHash, -1.0f);
         mCompanyNPC.mAnimator.SetLayerWeight(1, 1);
-        mCompanyNPC.mAnimator.SetFloat(mBVHash, 1.0f);
     }
-
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        if (GameManager.Instance.mState != GameManager.State.Game)
+        {
+            return;
+        }
         mPassoutTime -= Time.deltaTime;
         if(mPassoutTime <= 0.0f)
         {

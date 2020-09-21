@@ -36,6 +36,10 @@ public class IdleState : BaseNPCState
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        if (GameManager.Instance.mState != GameManager.State.Game)
+        {
+            return;
+        }
         if (mTriggerSet)
         {
             return;
@@ -52,6 +56,10 @@ public class IdleState : BaseNPCState
 
     void SetIdleState(int pIx)
     {
+        if (mCurIdleHash != -1)
+        {
+            mCompanyNPC.mAnimListener.UnregisterOnAnimationCompleted(mCurIdleHash, SetIdleState);
+        }
         mCompanyNPC.mIdleIndex = Random.Range(0, mCompanyNPC.mMaxIdleIx);
         mCurIdleHash = Animator.StringToHash(mIdleBase + mCompanyNPC.mIdleIndex);
         mCompanyNPC.mAnimListener.RegisterOnAnimationCompleted(mCurIdleHash, SetIdleState);

@@ -17,11 +17,12 @@ public class BarMenu : Menu
     [HideInInspector] public DrinkGlass drinkGlass;
     [HideInInspector] public CompanyNPC mCurrentActiveClient;
     [SerializeField] List<Drink> mAllDrinks;
-    [SerializeField] UnityEngine.UI.Button mServeBtn;
+    public GameObject mButtons;
+    public GameObject mDrinkSelections;
     public readonly Dictionary<DrinkBase, Drink> mDrinks = new Dictionary<DrinkBase, Drink>();
     public readonly Dictionary<DrinkBase, DrinkMaker> mDrinkMakers = new Dictionary<DrinkBase, DrinkMaker>();
     [HideInInspector] public DrinkMaker mActiveDrinkMaker;
-
+    [SerializeField] LongMouseClick mPourBtn;
     public override void Start()
     {
         base.Start();
@@ -37,7 +38,10 @@ public class BarMenu : Menu
 
     void Update()
     {
-        mServeBtn.interactable = mActiveDrinkMaker != null;
+        if(mActiveDrinkMaker != null && mPourBtn.IsButtonPressed())
+        {
+            mActiveDrinkMaker.ActivateDrinkMaker();
+        }
     }
 
     public void ServeDrink()
@@ -47,6 +51,7 @@ public class BarMenu : Menu
         drinkGlass = null;
         mActiveDrinkMaker = null;
         MenuManager.Instance.HideMenu(mMenuClassifier);
+        mButtons.SetActive(false);
+        mDrinkSelections.SetActive(true);
     }
-
 }

@@ -21,6 +21,7 @@ public class NPCManager : Singleton<NPCManager>
     [HideInInspector] public int mNPCsAtBar = 0;
     public int mMaxBarNPCs = 4;
     public int mMaxRaiseServer = 3;
+    public float mGameStartDelay = 4;
     [HideInInspector] public int mRaiseServer = 0;
     [HideInInspector] public readonly List<CompanyNPC> mVisitedBar = new List<CompanyNPC>();
     [HideInInspector] public readonly List<CompanyNPC> mTotalNPCs = new List<CompanyNPC>();
@@ -32,12 +33,22 @@ public class NPCManager : Singleton<NPCManager>
             case GameMode.Bartender:
                 if(mVisitedBar.Count == mTotalNPCs.Count)
                 {
-                    //change game mode
                     mMode = GameMode.Server;
                     mGameModeChanged.Invoke(mMode);
+                    GameManager.Instance.mState = GameManager.State.NonGame;
+                    MenuManager.Instance.ShowLoad();
                 }
                 break;
             case GameMode.Server:
+                if(GameManager.Instance.mState == GameManager.State.NonGame)
+                {
+                    mGameStartDelay -= Time.deltaTime;
+                    if(mGameStartDelay <= 0)
+                    {
+                        MenuManager.Instance.HideLoad();
+                        GameManager.Instance.mState = GameManager.State.Game;
+                    }
+                }
                 break;
         }
     }
@@ -46,6 +57,7 @@ public class NPCManager : Singleton<NPCManager>
     {
         int aNPCIx = Random.Range(0, mMissionNPCs.Count);
         NPCProps aProp = mMissionNPCs[aNPCIx];
+        aProp.mInebriationState = 0.0f;
         mMissionNPCs.RemoveAt(aNPCIx);
         return aProp;
     }
@@ -54,6 +66,7 @@ public class NPCManager : Singleton<NPCManager>
     {
         int aNPCIx = Random.Range(0, mNormalNPCs.Count);
         NPCProps aProp = mNormalNPCs[aNPCIx];
+        aProp.mInebriationState = 0.0f;
         return aProp;
     }
 
