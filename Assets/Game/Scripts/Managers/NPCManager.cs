@@ -15,8 +15,8 @@ public class NPCManager : Singleton<NPCManager>
     public List<NPCProps> mMissionNPCs;
     public List<NPCProps> mNormalNPCs;
 
-    public List<Transform> mPointsOfInterest;
-    public List<Transform> mBarLocation;
+    [HideInInspector] public List<Transform> mPointsOfInterest;
+    [HideInInspector] public List<Transform> mBarLocation;
     public GameMode mMode = GameMode.Bartender;
     [HideInInspector] public int mNPCsAtBar = 0;
     public int mMaxBarNPCs = 4;
