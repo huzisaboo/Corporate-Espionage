@@ -57,6 +57,7 @@ public class NPCManager : Singleton<NPCManager>
     {
         int aNPCIx = Random.Range(0, mMissionNPCs.Count);
         NPCProps aProp = mMissionNPCs[aNPCIx];
+        aProp.mInebriationState = 0.0f;
         mMissionNPCs.RemoveAt(aNPCIx);
         return aProp;
     }
@@ -65,6 +66,7 @@ public class NPCManager : Singleton<NPCManager>
     {
         int aNPCIx = Random.Range(0, mNormalNPCs.Count);
         NPCProps aProp = mNormalNPCs[aNPCIx];
+        aProp.mInebriationState = 0.0f;
         return aProp;
     }
 
