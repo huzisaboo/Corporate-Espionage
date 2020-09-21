@@ -19,5 +19,9 @@ MonoBehaviour:
   mBarWaitTime: 5
   mServerWaitTime: 10
   mMaxDrinksAtBar: 3
+  mCorrectDrinkMultiplier: 0.3
+  mIncorrectDrinkMultiplier: 1.2
   mPreferredDrinks: 04000000
   mColor: {r: 0.5283019, g: 0.4572802, b: 0.38625848, a: 1}
+  mNPCDepartment: {fileID: 0}
+  mNPCMission: {fileID: 0}

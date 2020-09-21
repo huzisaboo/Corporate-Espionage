@@ -23,8 +23,8 @@ public class CompanyNPC : MonoBehaviour
     public BarDrinkServe mPlayerUI;
     [HideInInspector] public NPCProps mNPCProps;
     [HideInInspector] public int mIdleIndex = 0;
-    [HideInInspector] public float mCurrentDrinkAmnt = 0;
     [HideInInspector] public bool mPassedOut = false;
+    [HideInInspector] public DrinkGlass mGlass;
     Material mMatCopy;
     void Start()
     {

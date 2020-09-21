@@ -19,6 +19,8 @@ public class NPCProps : ScriptableObject
     public float mBarWaitTime;
     public float mServerWaitTime;
     public int mMaxDrinksAtBar;
+    public float mCorrectDrinkMultiplier;
+    public float mIncorrectDrinkMultiplier;
     public List<DrinkBase> mPreferredDrinks;
     public Color mColor;
     public NPCDepartment mNPCDepartment;
