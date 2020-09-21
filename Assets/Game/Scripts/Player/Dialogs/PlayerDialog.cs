@@ -11,7 +11,7 @@ using UnityEngine.UI;
 
 public class PlayerDialog : MonoBehaviour
 {
-    public static readonly float dialogDisplayDelay = 3.3f;
+    public static readonly float dialogDisplayDelay = 6.3f;
 
     public GameObject dialogBox;
     public Transform dialogContentParent;
@@ -24,7 +24,7 @@ public class PlayerDialog : MonoBehaviour
     public bool isReadable = false;
 
     bool isShowingDefault = false;
-    bool showingInformation = true;
+    bool showingInformation = false;
 
     //Time
     [Range(0,1)]public float symbolDisplayFactor = 1;
@@ -33,16 +33,18 @@ public class PlayerDialog : MonoBehaviour
     void Start()
     {
         ShowDefaultDialog();
-        //StartCoroutine(test());
     }
 
-    IEnumerator test()
+    public void MakeVisible()
     {
-        yield return new WaitForSeconds(2);
-        ShowScribbles();
+        showDialog = true;
+    }
 
-        yield return new WaitForSeconds(2);
-        ShowInformation();
+    public void MakeReadable()
+    {
+        isReadable = true;
+        startTime = Time.time;
+        ShowScribbles();
     }
 
     private void Update()
