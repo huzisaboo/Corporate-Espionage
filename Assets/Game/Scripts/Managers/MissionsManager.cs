@@ -62,8 +62,8 @@ public class MissionsManager : Singleton<MissionsManager>
 
     public MissionsMenu mMissionsMenu;
 
-    [SerializeField]
-    private int _mDeptMissionCount = 2;
+    //[SerializeField]
+    private int _mDeptMissionCount = 2; //Hardcoded mission count
 
     void Start()
     {
