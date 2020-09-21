@@ -18,7 +18,8 @@ public class BodyTipsyControl : MonoBehaviour
     float mCurrentTipsyVal = 0.0f;
     [SerializeField] string mBodyHorFloat = "BodyHor";
     [SerializeField] string mBodyVertFloat = "BodyVert";
-
+    [SerializeField] float mAnimatorDelay = 1.0f;
+    float mCurDelay = 0.0f;
     int mBodyHorHash;
     int mBodyVertHash;
 
@@ -34,6 +35,12 @@ public class BodyTipsyControl : MonoBehaviour
         {
             return;
         }
+        mCurDelay -= Time.deltaTime;
+        if(mCurDelay > 0.0f)
+        {
+            return;
+        }
+        mCurDelay = mAnimatorDelay;
         mCurrentTipsyVal = mNPC.mNPCProps.mInebriationState * (mMaxTipsyVal - mMinTipsyVal);
         float aTipsyHor = Random.Range(-mCurrentTipsyVal, mCurrentTipsyVal);
         float aTipsyVer = Random.Range(-mCurrentTipsyVal, mCurrentTipsyVal);

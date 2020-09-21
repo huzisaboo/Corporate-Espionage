@@ -657,8 +657,8 @@ MonoBehaviour:
   mPlayerUI: {fileID: 594757689}
   mNPCProps: {fileID: 0}
   mIdleIndex: 0
-  mCurrentDrinkAmnt: 0
   mPassedOut: 0
+  mGlass: {fileID: 0}
 --- !u!114 &1109587730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -671,11 +671,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d1afb9d26094d3448244bc27689b1cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mMaxTipsyVal: 0.6
+  mMaxTipsyVal: 0.8
   mMinTipsyVal: 0.25
   mNPC: {fileID: 5360483130068285452}
   mBodyHorFloat: BodyHor
   mBodyVertFloat: BodyVert
+  mAnimatorDelay: 2
 --- !u!1 &5360483130068285453
 GameObject:
   m_ObjectHideFlags: 0

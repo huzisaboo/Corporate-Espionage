@@ -44,6 +44,11 @@ public class PlayerMission
         MissionProgress = 0;
     }
 
+    public void UpdateProgress(int _progress)   //Subscribe this to the PlayerDialog UpdateMissionProgress wherever declared and linked
+    {
+        MissionProgress = _progress;
+    }
+
 
     public delegate void ChangeProgress(int _progress);
     public event ChangeProgress OnChangeProgress;

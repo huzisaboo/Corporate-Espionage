@@ -15,8 +15,8 @@ public class NPCManager : Singleton<NPCManager>
     public List<NPCProps> mMissionNPCs;
     public List<NPCProps> mNormalNPCs;
 
-    [HideInInspector] public List<Transform> mPointsOfInterest;
-    [HideInInspector] public List<Transform> mBarLocation;
+    [HideInInspector] public readonly List<Transform> mPointsOfInterest = new List<Transform>();
+    [HideInInspector] public readonly List<Transform> mBarLocation = new List<Transform>();
     public GameMode mMode = GameMode.Bartender;
     [HideInInspector] public int mNPCsAtBar = 0;
     public int mMaxBarNPCs = 4;
@@ -25,7 +25,6 @@ public class NPCManager : Singleton<NPCManager>
     [HideInInspector] public readonly List<CompanyNPC> mVisitedBar = new List<CompanyNPC>();
     [HideInInspector] public readonly List<CompanyNPC> mTotalNPCs = new List<CompanyNPC>();
     [HideInInspector] public readonly GameModeChangedEvent mGameModeChanged = new GameModeChangedEvent();
-
     void Update()
     {
         switch(mMode)

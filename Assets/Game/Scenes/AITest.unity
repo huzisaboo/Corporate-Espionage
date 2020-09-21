@@ -328,17 +328,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5501669fb0a931147b842d38f66bb8ae, type: 2}
   - {fileID: 11400000, guid: 6f6936a5ca46dcb489b9c262a2015155, type: 2}
   - {fileID: 11400000, guid: 0d5fc536e2f796a4f865f7e7b4e3aea3, type: 2}
-  mPointsOfInterest:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  mBarLocation:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   mMode: 0
   mNPCsAtBar: 0
   mMaxBarNPCs: 4
@@ -356,7 +345,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &169298680
 GameObject:
@@ -414,7 +403,7 @@ MonoBehaviour:
   m_DrinkScriptableObj: {fileID: 11400000, guid: d9792d4d9963ddc4794686e25aae7aeb,
     type: 2}
   mIconImage: {fileID: 502941751}
-  mBarMenuClass: {fileID: 0}
+  mBarMenuClass: {fileID: 11400000, guid: 81e50ad49e139c941b088ba6a4466d55, type: 2}
 --- !u!114 &169298683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -565,7 +554,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 225213179}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1324115470}
+        m_MethodName: ServeDrink
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &225213179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -739,7 +739,7 @@ MonoBehaviour:
   m_DrinkScriptableObj: {fileID: 11400000, guid: 95643ba94ade0064bbc3c30a58bbd6c4,
     type: 2}
   mIconImage: {fileID: 1083332126}
-  mBarMenuClass: {fileID: 0}
+  mBarMenuClass: {fileID: 11400000, guid: 81e50ad49e139c941b088ba6a4466d55, type: 2}
 --- !u!114 &338109519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1023,7 +1023,7 @@ MonoBehaviour:
   m_DrinkScriptableObj: {fileID: 11400000, guid: a030a97618ee7f5438b2ab0b287867b4,
     type: 2}
   mIconImage: {fileID: 1966657583}
-  mBarMenuClass: {fileID: 0}
+  mBarMenuClass: {fileID: 11400000, guid: 81e50ad49e139c941b088ba6a4466d55, type: 2}
 --- !u!114 &481574931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1321,6 +1321,50 @@ MonoBehaviour:
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
+--- !u!1 &716542745
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 716542747}
+  - component: {fileID: 716542746}
+  m_Layer: 0
+  m_Name: TempSingleton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &716542746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716542745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e37eb712590cbd24d9ecc526604f276c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mLoadingMenu: {fileID: 11400000, guid: 79c3a15d559f11943b5acf5212e98f8a, type: 2}
+--- !u!4 &716542747
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716542745}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &748044385
 GameObject:
   m_ObjectHideFlags: 0
@@ -1716,7 +1760,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 30, y: 180, z: -0.001}
 --- !u!1 &1083332124
 GameObject:
@@ -1922,7 +1966,7 @@ MonoBehaviour:
   m_DrinkScriptableObj: {fileID: 11400000, guid: 35ae212d736bead42b677ed0ede312b5,
     type: 2}
   mIconImage: {fileID: 1576958503}
-  mBarMenuClass: {fileID: 0}
+  mBarMenuClass: {fileID: 11400000, guid: 81e50ad49e139c941b088ba6a4466d55, type: 2}
 --- !u!114 &1281816914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2617,7 +2661,7 @@ MonoBehaviour:
   m_DrinkScriptableObj: {fileID: 11400000, guid: d893e99ce91240244a7602c4250af222,
     type: 2}
   mIconImage: {fileID: 1272254813}
-  mBarMenuClass: {fileID: 0}
+  mBarMenuClass: {fileID: 11400000, guid: 81e50ad49e139c941b088ba6a4466d55, type: 2}
 --- !u!114 &1679180052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2743,7 +2787,7 @@ MonoBehaviour:
   m_DrinkScriptableObj: {fileID: 11400000, guid: bb0f6b9ae9848044298dd3b8748c70d3,
     type: 2}
   mIconImage: {fileID: 2114778553}
-  mBarMenuClass: {fileID: 0}
+  mBarMenuClass: {fileID: 11400000, guid: 81e50ad49e139c941b088ba6a4466d55, type: 2}
 --- !u!114 &1732567954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3128,7 +3172,7 @@ MonoBehaviour:
   m_DrinkScriptableObj: {fileID: 11400000, guid: 46753fd43b1a0b045b63f168ab1e0f8b,
     type: 2}
   mIconImage: {fileID: 53292643}
-  mBarMenuClass: {fileID: 0}
+  mBarMenuClass: {fileID: 11400000, guid: 81e50ad49e139c941b088ba6a4466d55, type: 2}
 --- !u!114 &1871475987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3420,7 +3464,7 @@ MonoBehaviour:
   m_DrinkScriptableObj: {fileID: 11400000, guid: abd7215c8227e3442bcb59327c1070f9,
     type: 2}
   mIconImage: {fileID: 538131616}
-  mBarMenuClass: {fileID: 0}
+  mBarMenuClass: {fileID: 11400000, guid: 81e50ad49e139c941b088ba6a4466d55, type: 2}
 --- !u!114 &2002503994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3721,7 +3765,7 @@ PrefabInstance:
     - target: {fileID: 5360483130068575273, guid: 272f9d7dd1a7aa34fa4142fcc9e2d589,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5360483130068575273, guid: 272f9d7dd1a7aa34fa4142fcc9e2d589,
         type: 3}
