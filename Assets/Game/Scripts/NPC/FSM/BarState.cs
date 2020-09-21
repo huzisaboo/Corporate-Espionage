@@ -38,6 +38,8 @@ public class BarState : BaseNPCState
 
     bool mStateTriggered = false;
 
+    BarMenu mBarMenu;
+    [SerializeField] MenuClassifier mBarClassifier;
     public override void OnStateEnter(Animator pFSM, AnimatorStateInfo pStateInfo, int pLayerIndex)
     {
         if (mCompanyNPC == null)
@@ -45,6 +47,7 @@ public class BarState : BaseNPCState
             mDrinkHash = Animator.StringToHash(mDrinkTrigger);
             mTableHash = Animator.StringToHash(mNextTableTrigger);
             mPassoutHash = Animator.StringToHash(mPassoutTrigger);
+            mBarMenu = MenuManager.Instance.GetMenu<BarMenu>(mBarClassifier);
         }
         base.OnStateEnter(pFSM, pStateInfo, pLayerIndex);
         mCurrentWaitTime = 0.0f;
@@ -53,11 +56,14 @@ public class BarState : BaseNPCState
         mNPCState = InternalBarState.Waiting;
         SetIdleState(-1);
         mStateTriggered = false;
+        mCompanyNPC.mPlayerUI.gameObject.SetActive(true);
+        mCompanyNPC.mPlayerUI.mTimerImage.gameObject.SetActive(true);
+        mCompanyNPC.mPlayerUI.mDrinkImage.gameObject.SetActive(true);
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(mStateTriggered)
+        if (mStateTriggered)
         {
             return;
         }
@@ -77,22 +83,34 @@ public class BarState : BaseNPCState
 
     void NPCWaiting()
     {
+        if (mCurrentWaitTime <= 0.1f)
+        {
+            mCompanyNPC.mPlayerUI.mDrinkImage.color =
+                mBarMenu.mDrinks[mCompanyNPC.mNPCProps.mPreferredDrinks
+                [Random.Range(0, mCompanyNPC.mNPCProps.mPreferredDrinks.Count)]].m_drinkColor;
+        }
         mCurrentWaitTime += Time.deltaTime;
+        mCompanyNPC.mPlayerUI.mTimerImage.fillAmount = (mCompanyNPC.mNPCProps.mBarWaitTime - mCurrentWaitTime) / mCompanyNPC.mNPCProps.mBarWaitTime;
         if (mCurrentWaitTime >= mCompanyNPC.mNPCProps.mBarWaitTime)
         {
+            mCompanyNPC.mPlayerUI.mTimerImage.fillAmount = 0;
             GoToTable();
         }
         else
         {
-            //if menu is still visible return
-            if(Input.GetMouseButtonDown(0))
+            if (mBarMenu.gameObject.activeInHierarchy)
+            {
+                return;
+            }
+            if (Input.GetMouseButtonDown(0))
             {
                 RaycastHit aHitInfo;
-                if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out aHitInfo, mRaycastDist,mRayMask))
+                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out aHitInfo, mRaycastDist, mRayMask))
                 {
-                    if(aHitInfo.collider.gameObject.GetInstanceID() == mCompanyNPC.gameObject.GetInstanceID())
+                    if (aHitInfo.collider.gameObject.GetInstanceID() == mCompanyNPC.gameObject.GetInstanceID())
                     {
-                        //open menu from menu manager
+                        MenuManager.Instance.ShowMenu(mBarClassifier);
+                        mBarMenu.mCurrentActiveClient = mCompanyNPC;
                         mNPCState = InternalBarState.Attended;
                     }
                 }
@@ -106,17 +124,20 @@ public class BarState : BaseNPCState
         [Random.Range(0, NPCManager.Instance.mPointsOfInterest.Count)].position);
         mFSM.SetTrigger(mTableHash);
         mStateTriggered = true;
+        NPCManager.Instance.mVisitedBar.Add(mCompanyNPC);
     }
 
     void NPCAttended()
     {
-        //check if menu is still visible
-        //if not then go to drinking state
+        if (!mBarMenu.gameObject.activeInHierarchy)
+        {
+            mNPCState = InternalBarState.Drinking;
+        }
     }
 
     void NPCDrinking()
     {
-        if(!mDrinkTriggered)
+        if (!mDrinkTriggered)
         {
             mDrinkTriggered = true;
             mDrinksAtBar++;
@@ -134,6 +155,7 @@ public class BarState : BaseNPCState
         if (mCompanyNPC.mPassedOut)
         {
             mFSM.SetTrigger(mPassoutHash);
+            NPCManager.Instance.mVisitedBar.Add(mCompanyNPC);
             mStateTriggered = true;
         }
         else if (mDrinksAtBar >= mCompanyNPC.mNPCProps.mMaxDrinksAtBar)
@@ -159,5 +181,12 @@ public class BarState : BaseNPCState
         mCompanyNPC.mAnimator.SetInteger("IdleIx", mCompanyNPC.mIdleIndex);
     }
 
+    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        mCompanyNPC.mPlayerUI.mDrinkImage.color = Color.white;
+        mCompanyNPC.mPlayerUI.mDrinkImage.gameObject.SetActive(false);
+        mCompanyNPC.mPlayerUI.mTimerImage.gameObject.SetActive(false);
+        mCompanyNPC.mPlayerUI.gameObject.SetActive(false);
+    }
 
 }
