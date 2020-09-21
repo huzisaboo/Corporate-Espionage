@@ -25,6 +25,7 @@ public class CompanyNPC : MonoBehaviour
     [HideInInspector] public int mIdleIndex = 0;
     [HideInInspector] public bool mPassedOut = false;
     [HideInInspector] public DrinkGlass mGlass;
+    public PlayerDialog mPlayerDialog;
     Material mMatCopy;
     void Start()
     {

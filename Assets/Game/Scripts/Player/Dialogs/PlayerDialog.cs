@@ -34,17 +34,27 @@ public class PlayerDialog : MonoBehaviour
     }
 
     //Time
-    [Range(0,1)]public float symbolDisplayFactor = 1;
+    [Range(0, 1)] public float symbolDisplayFactor = 1;
     public float startTime;
 
     void Start()
     {
         ShowDefaultDialog();
+        NPCManager.Instance.mGameModeChanged.AddListener(MakeVisible);
     }
 
-    public void MakeVisible()
+    private void OnDestroy()
+    {
+        if (NPCManager.IsValidSingleton())
+        {
+            NPCManager.Instance.mGameModeChanged.RemoveListener(MakeVisible);
+        }
+    }
+
+    public void MakeVisible(GameMode gameMode)
     {
         showDialog = true;
+        MissionProgress = 0;
     }
 
     public void MakeReadable()
@@ -52,6 +62,11 @@ public class PlayerDialog : MonoBehaviour
         isReadable = true;
         startTime = Time.time;
         ShowScribbles();
+    }
+
+    public void MakeUnreadable()
+    {
+        isReadable = false;
     }
 
     private void Update()

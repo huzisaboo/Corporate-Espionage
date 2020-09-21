@@ -32,6 +32,8 @@ public class PlayerMission
                 missionProgress = value;
 
                 OnChangeProgress?.Invoke(missionProgress);
+
+                MissionsManager.Instance.UpdateMissionProgress();
             }
         }
     }
@@ -114,5 +116,9 @@ public class MissionsManager : Singleton<MissionsManager>
             }
         }
         return randomNum;
+    }
+
+    public void UpdateMissionProgress()
+    { 
     }
 }
