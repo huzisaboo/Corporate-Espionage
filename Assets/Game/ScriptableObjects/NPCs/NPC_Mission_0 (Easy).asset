@@ -23,5 +23,3 @@ MonoBehaviour:
   mIncorrectDrinkMultiplier: 2
   mPreferredDrinks: 000000000300000002000000
   mColor: {r: 0.11755096, g: 0.7924528, b: 0.10840159, a: 1}
-  mNPCDepartment: {fileID: 0}
-  mNPCMission: {fileID: 0}

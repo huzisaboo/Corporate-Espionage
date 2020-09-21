@@ -150,7 +150,7 @@ public class PlayerDialog : MonoBehaviour
         spriteSymbol.transform.SetSiblingIndex(Random.Range(0, dialogContentParent.childCount));
         spriteSymbol.sprite = symbolSprite;
         MissionProgress++;
-        Debug.LogError("INFORMATION SHOWN" + MissionProgress);
+        //Debug.LogError("INFORMATION SHOWN" + MissionProgress);
     }
 
     public delegate void UpdateProgress(int _progress);

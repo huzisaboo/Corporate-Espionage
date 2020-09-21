@@ -27,6 +27,7 @@ public class CompanyNPC : MonoBehaviour
     [HideInInspector] public DrinkGlass mGlass;
     public PlayerDialog mPlayerDialog;
     Material mMatCopy;
+    public NPCMission mNPCMission;
     void Start()
     {
         NPCManager.Instance.mTotalNPCs.Add(this);
@@ -35,5 +36,14 @@ public class CompanyNPC : MonoBehaviour
         mMatCopy = mRenderer.material;
         mMatCopy.SetColor("_Color4", mNPCProps.mColor);
         mRenderer.material = mMatCopy;
+
+        mPlayerDialog.symbolSprite = mNPCMission.missionBadge;
+        foreach (PlayerMission mission in MissionsManager.Instance.mPlayerMissions)
+        {
+            if (mission.missionName == mNPCMission.missionName)
+            {
+                mPlayerDialog.OnUpdateMissionProgress += mission.UpdateProgress;
+            }
+        }
     }
 }
