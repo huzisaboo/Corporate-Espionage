@@ -669,6 +669,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8456a1fc3571fe4ba8371d306bf6bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mGameScene:
+    sceneAsset: {fileID: 102900000, guid: 1486d1535d430634583832e0d5411ea1, type: 3}
+    scenePath: Assets/Game/Scenes/ServerLevel.unity
+    sceneName: ServerLevel
+  mUIScene:
+    sceneAsset: {fileID: 102900000, guid: 80f5da7f9960dfb45864766dc3dbd624, type: 3}
+    scenePath: Assets/Game/Scenes/UI.unity
+    sceneName: UI
+  mState: 0
 --- !u!1 &1356532784
 GameObject:
   m_ObjectHideFlags: 0
