@@ -4,21 +4,31 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private float movementX;
-    private float movementY;
-    // Start is called before the first frame update
+    private CharacterController m_controller;
+    private Animator m_animator;
     void Start()
     {
-        
+        m_controller = GetComponent<CharacterController>();
+        m_animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        movementX = Input.GetAxis("Horizontal");
-        movementY = Input.GetAxis("Vertical");
+        MovementUpdate();
+    }
 
-        Debug.Log("X: " + movementX);
-        Debug.Log("Y: " + movementY);
+    private void MovementUpdate()
+    {
+        Vector3 movement = new Vector3(InputManager.Instance.GetXValue(), 0, InputManager.Instance.GetYValue());
+
+        if (m_animator != null)
+        {
+            m_animator.SetFloat("Speed", movement.magnitude);
+           if(movement != Vector3.zero)
+            {
+                transform.forward = movement;
+            }
+        }
     }
 }
+
