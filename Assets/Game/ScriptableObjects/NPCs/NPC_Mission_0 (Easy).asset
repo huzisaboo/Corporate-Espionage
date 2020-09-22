@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fb029954dfbe3e4194961108c011868, type: 3}
   m_Name: NPC_Mission_0 (Easy)
   m_EditorClassIdentifier: 
-  mInebriationState: 0
   mNPCType: 0
   mDrunkThreshold: 0.6
   mPassoutThreshold: 0.95
-  mBarWaitTime: 5
-  mServerWaitTime: 10
+  mBarWaitTime: 15
+  mServerWaitTime: 20
   mMaxDrinksAtBar: 3
   mCorrectDrinkMultiplier: 0.4
   mIncorrectDrinkMultiplier: 2
