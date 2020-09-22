@@ -79,5 +79,7 @@ public class GameManager : Singleton<GameManager>
         mEndGameMenu.MissionsCompleted(pCompletedPercentage);
         mEndGameMenu.DisplayRemainingTime(pRemainingTime);
         MenuManager.Instance.ShowMenu(mGameEndMenu);
+        MultiSceneManager.Instance.UnloadScene(mGameScene);
+        mState = State.NonGame;
     }
 }
