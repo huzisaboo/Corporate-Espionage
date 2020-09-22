@@ -6023,7 +6023,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1077185973
 Transform:
   m_ObjectHideFlags: 0
@@ -14830,42 +14830,6 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!1 &2072409463 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5360483130068285449, guid: 272f9d7dd1a7aa34fa4142fcc9e2d589,
-    type: 3}
-  m_PrefabInstance: {fileID: 3423780387709405794}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2072409464 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5360483130068285452, guid: 272f9d7dd1a7aa34fa4142fcc9e2d589,
-    type: 3}
-  m_PrefabInstance: {fileID: 3423780387709405794}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2072409463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd25f5cb35f6df04fa85b4e28c0c3f44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2072409465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2072409463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d1afb9d26094d3448244bc27689b1cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mMaxTipsyVal: 0.5
-  mMinTipsyVal: 0.1
-  mNPC: {fileID: 2072409464}
-  mBodyHorFloat: BodyHor
-  mBodyVertFloat: BodyVert
-  mAnimatorDelay: 1
 --- !u!1 &2074044693
 GameObject:
   m_ObjectHideFlags: 0
@@ -15385,6 +15349,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: c24e2d2ce53f3934ea93fbcf87aca28c,
         type: 2}
+    - target: {fileID: 5360483130068285452, guid: 272f9d7dd1a7aa34fa4142fcc9e2d589,
+        type: 3}
+      propertyPath: mNPCMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5360483130068575273, guid: 272f9d7dd1a7aa34fa4142fcc9e2d589,
         type: 3}
       propertyPath: m_LocalPosition.x
