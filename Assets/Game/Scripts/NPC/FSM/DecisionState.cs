@@ -65,7 +65,7 @@ public class DecisionState : BaseNPCState
         {
             return false;
         }
-        if(mCompanyNPC.mNPCProps.mInebriationState > mCompanyNPC.mNPCProps.mDrunkThreshold)
+        if(mCompanyNPC.mInebriationState > mCompanyNPC.mNPCProps.mDrunkThreshold)
         {
             return false;
         }

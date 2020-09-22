@@ -156,12 +156,12 @@ public class BarState : BaseNPCState
     void AnalyzeDrinking(int pIx)
     {
         mCompanyNPC.mAnimListener.UnregisterOnAnimationCompleted(mDrinkHash, AnalyzeDrinking);
-        mCompanyNPC.mNPCProps.mInebriationState += 
+        mCompanyNPC.mInebriationState += 
             mCompanyNPC.mGlass.GetAlcPercent() * 
             (mCompanyNPC.mNPCProps.mPreferredDrinks.Contains(mCompanyNPC.mGlass.mDrinkType) ?
             mCompanyNPC.mNPCProps.mCorrectDrinkMultiplier : mCompanyNPC.mNPCProps.mIncorrectDrinkMultiplier);
         Destroy(mCompanyNPC.mGlass.gameObject);
-        mCompanyNPC.mPassedOut = mCompanyNPC.mNPCProps.mInebriationState >= mCompanyNPC.mNPCProps.mPassoutThreshold;
+        mCompanyNPC.mPassedOut = mCompanyNPC.mInebriationState >= mCompanyNPC.mNPCProps.mPassoutThreshold;
         if (mCompanyNPC.mPassedOut)
         {
             mFSM.SetTrigger(mPassoutHash);
