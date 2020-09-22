@@ -19,10 +19,17 @@ public class GameManager : Singleton<GameManager>
         Game
     }
 
+    public enum Result
+    {
+        Won,
+        Lost
+    }
+
     public SceneReference mGameScene;
     public SceneReference mUIScene;
     [HideInInspector] public State mState = State.NonGame;
-
+    public MenuClassifier mEndMenuClassifier;
+    EndMenu mEndMenu;
     void Awake()
     {
         LeanTween.init(1000);
@@ -63,5 +70,10 @@ public class GameManager : Singleton<GameManager>
     {
         mState = State.Game;
         MultiSceneManager.Instance.LoadScene(mGameScene);
+    }
+
+    public void EndGame()
+    {
+        mEndMenu = MenuManager.Instance.GetMenu<EndMenu>(mEndMenuClassifier);
     }
 }

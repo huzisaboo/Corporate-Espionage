@@ -939,7 +939,18 @@ MonoBehaviour:
   mDelay: 0.1
   mFadeInTime: 0.2
   mFadeOutTime: 0.2
+  m_timeRemString: 'Time Remaining:'
+  m_missionCompString: Missions Completed
+  m_successMessage: Congratulations! You Passed!
+  m_failureMessage: You Failed! Better Luck Next Time!
+  m_completedMessage: All missions completed!
+  m_timeupMessage: You ran out of time!
+  m_spottedMessage: You were spotted by the employee!
   m_mainMenuPanel: {fileID: 98735736}
+  m_gameEndReasonText: {fileID: 2024549055}
+  m_TimeRemaining: {fileID: 598537147}
+  m_missionCompleted: {fileID: 188628486}
+  m_passFailText: {fileID: 616421381}
 --- !u!225 &914057108
 CanvasGroup:
   m_ObjectHideFlags: 0
