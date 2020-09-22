@@ -176,7 +176,7 @@ public class MissionsManager : Singleton<MissionsManager>
 
         if (_mCompletionPercentage >= 100)
         {
-            //GameWinScreen
+            OnTimeOver();
         }
     }
 
@@ -188,17 +188,16 @@ public class MissionsManager : Singleton<MissionsManager>
         _mStartTimer = true;
     }
 
-    public void OnTimeOver()
+    public void OnTimeOver(GameEndReason pReason = GameEndReason.TimeUp)
     {
         if (_mCompletionPercentage >= _mMinWinPercentage)
         {
-            //GameWinScreen            
-            Debug.Log("YOU HAVE WON");
+            pReason = GameEndReason.MissionsOver;
+            GameManager.Instance.EndGame(EndMenu.Result.Won, pReason, _mServerMissionTime.ToString(), _mCompletionPercentage);
         }
         else
         {
-            //GameLostScreen
-            Debug.Log("YOU HAVE LOST");
+            GameManager.Instance.EndGame(EndMenu.Result.Lost, pReason, _mServerMissionTime.ToString(), _mCompletionPercentage);
         }
     }
 }
