@@ -9,7 +9,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
+using Cinemachine;
 public class NPCManager : Singleton<NPCManager>
 {
     public List<NPCProps> mMissionNPCs;
@@ -26,6 +26,10 @@ public class NPCManager : Singleton<NPCManager>
     [HideInInspector] public readonly List<CompanyNPC> mVisitedBar = new List<CompanyNPC>();
     [HideInInspector] public readonly List<CompanyNPC> mTotalNPCs = new List<CompanyNPC>();
     [HideInInspector] public readonly GameModeChangedEvent mGameModeChanged = new GameModeChangedEvent();
+    [SerializeField] CinemachineVirtualCamera mBarCam;
+    [SerializeField] CinemachineFreeLook mServerCam;
+    [SerializeField] GameObject mServerObj;
+    [SerializeField] GameObject mBartenderObj;
     void Update()
     {
         switch(mMode)
@@ -37,6 +41,10 @@ public class NPCManager : Singleton<NPCManager>
                     mGameModeChanged.Invoke(mMode);
                     GameManager.Instance.mState = GameManager.State.NonGame;
                     MenuManager.Instance.ShowLoad();
+                    mBarCam.Priority = 0;
+                    mBartenderObj.SetActive(false);
+                    mServerCam.Priority = 20;
+                    mServerObj.SetActive(true);
                 }
                 break;
             case GameMode.Server:

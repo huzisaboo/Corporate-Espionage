@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &98735737
 RectTransform:
   m_ObjectHideFlags: 0
@@ -934,12 +934,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mMenuClassifier: {fileID: 11400000, guid: ad60403bb278ff247a6054b3f58f2078, type: 2}
-  mStartMenuState: 1
+  mStartMenuState: 2
   mResetPosition: 1
   mDelay: 0.1
   mFadeInTime: 0.2
   mFadeOutTime: 0.2
+  m_timeRemString: 'Time Remaining:'
+  m_missionCompString: Missions Completed
+  m_successMessage: Congratulations! You Passed!
+  m_failureMessage: You Failed! Better Luck Next Time!
+  m_completedMessage: All missions completed!
+  m_timeupMessage: You ran out of time!
+  m_spottedMessage: You were spotted by the employee!
   m_mainMenuPanel: {fileID: 98735736}
+  m_gameEndReasonText: {fileID: 2024549055}
+  m_TimeRemaining: {fileID: 598537147}
+  m_missionCompleted: {fileID: 188628486}
+  m_passFailText: {fileID: 616421381}
 --- !u!225 &914057108
 CanvasGroup:
   m_ObjectHideFlags: 0

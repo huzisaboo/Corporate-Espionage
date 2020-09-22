@@ -100,3 +100,10 @@ public enum DrinkBase
     Tequila,
     Brandy
 }
+
+public enum GameEndReason
+{
+    TimeUp,
+    Spotted,
+    MissionsOver
+}
