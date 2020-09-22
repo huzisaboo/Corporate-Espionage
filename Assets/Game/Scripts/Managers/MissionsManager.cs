@@ -79,11 +79,12 @@ public class MissionsManager : Singleton<MissionsManager>
     [SerializeField]private float _mServerMissionTime = 6f; //minutes
     private bool _mStartTimer = false;
     //private float _mTimerStartTime = 0;
-    [SerializeField] UnityEngine.UI.Text _mTimerDisplayText;
+    [SerializeField] TMPro.TextMeshProUGUI _mTimerDisplayText;
 
     void Start()
     {
         GenerateNewMissions();
+        _mTimerDisplayText.text = "";
     }
 
     private void Update()
@@ -104,7 +105,7 @@ public class MissionsManager : Singleton<MissionsManager>
                 float timeRemaining = _mServerMissionTime - Time.time;
                 float minutes = Mathf.FloorToInt(timeRemaining / 60);
                 float seconds = Mathf.FloorToInt(timeRemaining % 60);
-                _mTimerDisplayText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+                _mTimerDisplayText.text = string.Format("{0:00} : {1:00}", minutes, seconds);
             }
             else
             {
@@ -182,6 +183,7 @@ public class MissionsManager : Singleton<MissionsManager>
         //_mTimerStartTime = Time.time;   // Set the mission start time
         _mServerMissionTime *= 60;   // Set the mission duration in seconds
         _mServerMissionTime += Time.time;   // Set the mission end time
+        _mStartTimer = true;
     }
 
     public void OnTimeOver()
@@ -189,10 +191,12 @@ public class MissionsManager : Singleton<MissionsManager>
         if (_mCompletionPercentage >= _mMinWinPercentage)
         {
             //GameWinScreen            
+            Debug.Log("YOU HAVE WON");
         }
         else
         {
             //GameLostScreen
+            Debug.Log("YOU HAVE LOST");
         }
     }
 }
