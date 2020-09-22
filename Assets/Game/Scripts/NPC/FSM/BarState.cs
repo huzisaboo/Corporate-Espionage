@@ -129,6 +129,9 @@ public class BarState : BaseNPCState
         mFSM.SetTrigger(mTableHash);
         mStateTriggered = true;
         NPCManager.Instance.mVisitedBar.Add(mCompanyNPC);
+        NPCManager.Instance.mNPCsAtBar--;
+        NPCManager.Instance.mBL.Remove(mCompanyNPC.mBarIx);
+        mCompanyNPC.mBarIx = -1;
     }
 
     void NPCAttended()
@@ -153,17 +156,20 @@ public class BarState : BaseNPCState
     void AnalyzeDrinking(int pIx)
     {
         mCompanyNPC.mAnimListener.UnregisterOnAnimationCompleted(mDrinkHash, AnalyzeDrinking);
-        mCompanyNPC.mNPCProps.mInebriationState += 
+        mCompanyNPC.mInebriationState += 
             mCompanyNPC.mGlass.GetAlcPercent() * 
             (mCompanyNPC.mNPCProps.mPreferredDrinks.Contains(mCompanyNPC.mGlass.mDrinkType) ?
             mCompanyNPC.mNPCProps.mCorrectDrinkMultiplier : mCompanyNPC.mNPCProps.mIncorrectDrinkMultiplier);
         Destroy(mCompanyNPC.mGlass.gameObject);
-        mCompanyNPC.mPassedOut = mCompanyNPC.mNPCProps.mInebriationState >= mCompanyNPC.mNPCProps.mPassoutThreshold;
+        mCompanyNPC.mPassedOut = mCompanyNPC.mInebriationState >= mCompanyNPC.mNPCProps.mPassoutThreshold;
         if (mCompanyNPC.mPassedOut)
         {
             mFSM.SetTrigger(mPassoutHash);
             NPCManager.Instance.mVisitedBar.Add(mCompanyNPC);
             mStateTriggered = true;
+            NPCManager.Instance.mNPCsAtBar--;
+            NPCManager.Instance.mBL.Remove(mCompanyNPC.mBarIx);
+            mCompanyNPC.mBarIx = -1;
         }
         else if (mDrinksAtBar >= mCompanyNPC.mNPCProps.mMaxDrinksAtBar)
         {

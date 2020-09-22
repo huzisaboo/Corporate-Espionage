@@ -41,6 +41,11 @@ public class Eavesdropper : MonoBehaviour
 
         foreach (CompanyNPC npc in NPCManager.Instance.mTotalNPCs)
         {
+            if(npc.mPassedOut
+                || npc.mNPCMode == NPCType.NormalNPC)
+            {
+                continue;
+            }
             if (Vector3.Distance(transform.position, npc.transform.position) <= m_minEavesdropDist)
             {
                 if (!npcsInRange.Contains(npc))     //Makes sure that the trigger is called only once.

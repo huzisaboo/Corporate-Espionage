@@ -28,6 +28,11 @@ public class CompanyNPC : MonoBehaviour
     public PlayerDialog mPlayerDialog;
     Material mMatCopy;
     public NPCMission mNPCMission;
+    [HideInInspector]
+    public int mTableIx = -1;
+    [HideInInspector]
+    public int mBarIx = -1;
+    [HideInInspector] public float mInebriationState = 0.0f;
     void Start()
     {
         NPCManager.Instance.mTotalNPCs.Add(this);
@@ -36,14 +41,35 @@ public class CompanyNPC : MonoBehaviour
         mMatCopy = mRenderer.material;
         mMatCopy.SetColor("_Color4", mNPCProps.mColor);
         mRenderer.material = mMatCopy;
-
-        mPlayerDialog.symbolSprite = mNPCMission.missionBadge;
-        foreach (PlayerMission mission in MissionsManager.Instance.mPlayerMissions)
+        if(mNPCMode == NPCType.MissionNPC)
         {
-            if (mission.missionName == mNPCMission.missionName)
+            mPlayerDialog.symbolSprite = mNPCMission.missionBadge;
+            foreach (PlayerMission mission in MissionsManager.Instance.mPlayerMissions)
             {
-                mPlayerDialog.OnUpdateMissionProgress += mission.UpdateProgress;
+                if (mission.missionName == mNPCMission.missionName)
+                {
+                    mPlayerDialog.OnUpdateMissionProgress += mission.UpdateProgress;
+                }
             }
         }
+        else
+        {
+            mPlayerDialog.gameObject.SetActive(false);
+        }
+        NPCManager.Instance.mGameModeChanged.AddListener(SetDialogSymbol);
     }
+
+    void OnDestroy()
+    {
+        if (NPCManager.IsValidSingleton())
+        {
+            NPCManager.Instance.mGameModeChanged.RemoveListener(SetDialogSymbol);
+        }
+    }
+
+    void SetDialogSymbol(GameMode pMode)
+    {
+        mPlayerDialog.symbolDisplayFactor *= (1 - mInebriationState);
+    }
+
 }

@@ -368,7 +368,7 @@ MonoBehaviour:
     mOffset: {x: 0.5, y: 0.25, z: 0}
   mObstacleLayers:
     serializedVersion: 2
-    m_Bits: 1792
+    m_Bits: 768
 --- !u!1 &3423780387817155883
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,6 +563,7 @@ GameObject:
   - component: {fileID: 5360483130068285454}
   - component: {fileID: 5360483130068285455}
   - component: {fileID: 5360483130068285452}
+  - component: {fileID: 2072409465}
   m_Layer: 10
   m_Name: CompanyNPC
   m_TagString: Untagged
@@ -660,6 +661,25 @@ MonoBehaviour:
   mPassedOut: 0
   mGlass: {fileID: 0}
   mPlayerDialog: {fileID: 17755854211537990}
+  mNPCMission: {fileID: 0}
+--- !u!114 &2072409465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5360483130068285449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d1afb9d26094d3448244bc27689b1cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mMaxTipsyVal: 0.5
+  mMinTipsyVal: 0.1
+  mNPC: {fileID: 5360483130068285452}
+  mBodyHorFloat: BodyHor
+  mBodyVertFloat: BodyVert
+  mAnimatorDelay: 1
 --- !u!1 &5360483130068285453
 GameObject:
   m_ObjectHideFlags: 0

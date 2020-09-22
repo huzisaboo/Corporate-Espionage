@@ -5,6 +5,14 @@ using UnityEngine.UI;
 
 public class EndMenu : Menu
 {
+
+    public enum Result
+    {
+        Won,
+        Lost
+    }
+
+
     [Header("Static Text Values")]
     [SerializeField] string m_timeRemString = "Time Remaining: ";
     [SerializeField] string m_missionCompString = "Missions Completed: ";
@@ -49,14 +57,14 @@ public class EndMenu : Menu
         m_TimeRemaining.text = m_timeRemString + time +"s";
     }
 
-    public void MissionsCompleted(int completedCount,int totalCount)
+    public void MissionsCompleted(float completedPercentage)
     {
-        m_missionCompleted.text = m_missionCompString + completedCount.ToString() + "/" + totalCount.ToString();
+        m_missionCompleted.text = m_missionCompString + completedPercentage.ToString();
     }
 
-    public void DisplayResult(GameManager.Result p_result)
+    public void DisplayResult(Result p_result)
     {
-        if(p_result == GameManager.Result.Won)
+        if(p_result == Result.Won)
         {
             m_passFailText.text = m_successMessage;
         }

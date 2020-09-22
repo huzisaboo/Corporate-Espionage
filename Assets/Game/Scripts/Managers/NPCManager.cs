@@ -17,6 +17,8 @@ public class NPCManager : Singleton<NPCManager>
 
     [HideInInspector] public readonly List<Transform> mPointsOfInterest = new List<Transform>();
     [HideInInspector] public readonly List<Transform> mBarLocation = new List<Transform>();
+    [HideInInspector] public readonly List<int> mPoI = new List<int>();
+    [HideInInspector] public readonly List<int> mBL = new List<int>();
     public GameMode mMode = GameMode.Bartender;
     [HideInInspector] public int mNPCsAtBar = 0;
     public int mMaxBarNPCs = 4;
@@ -65,8 +67,6 @@ public class NPCManager : Singleton<NPCManager>
     {
         int aNPCIx = Random.Range(0, mMissionNPCs.Count);
         NPCProps aProp = mMissionNPCs[aNPCIx];
-        aProp.mInebriationState = 0.0f;
-        mMissionNPCs.RemoveAt(aNPCIx);
         return aProp;
     }
 
@@ -74,7 +74,6 @@ public class NPCManager : Singleton<NPCManager>
     {
         int aNPCIx = Random.Range(0, mNormalNPCs.Count);
         NPCProps aProp = mNormalNPCs[aNPCIx];
-        aProp.mInebriationState = 0.0f;
         return aProp;
     }
 

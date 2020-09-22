@@ -14,6 +14,7 @@ public class IdleState : BaseNPCState
 {
     [SerializeField] float mMinIdleTime = 2.0f;
     [SerializeField] float mMaxIdleTime = 5.0f;
+    [SerializeField] float mServerIdleMult = 5.0f;
     float mCurrentIdleTime;
     float mIdleStayTime;
     int mDecideHash = -1;
@@ -28,10 +29,16 @@ public class IdleState : BaseNPCState
             mDecideHash = Animator.StringToHash(mDecideActionStateTrigger);
         }
         base.OnStateEnter(animator, stateInfo, layerIndex);
-        mIdleStayTime = Random.Range(mMinIdleTime, mMaxIdleTime);
+        mIdleStayTime = Random.Range(mMinIdleTime, mMaxIdleTime) * 
+            (NPCManager.Instance.mMode == GameMode.Server ? mServerIdleMult : 1);
         mCurrentIdleTime = 0.0f;
         SetIdleState(-1);
         mTriggerSet = false;
+        if(mCompanyNPC.mTableIx != -1)
+        {
+            NPCManager.Instance.mPoI.Remove(mCompanyNPC.mTableIx);
+            mCompanyNPC.mTableIx = -1;
+        }
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

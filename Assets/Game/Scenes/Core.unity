@@ -231,7 +231,9 @@ MonoBehaviour:
       type: 2}
     mExposedVolVariableName: UIVol
     mNoOfAudioSources: 5
-  mAudioData: []
+  mAudioData:
+  - mAudioClip: {fileID: 8300000, guid: c8311eb4fadbc48489abd21ac397819d, type: 3}
+    mAudioGroup: 1
 --- !u!1 &324254571
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,8 +673,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mGameScene:
     sceneAsset: {fileID: 102900000, guid: 1486d1535d430634583832e0d5411ea1, type: 3}
-    scenePath: Assets/Game/Scenes/ServerLevel.unity
-    sceneName: ServerLevel
+    scenePath: Assets/Game/Scenes/Game.unity
+    sceneName: Game
   mUIScene:
     sceneAsset: {fileID: 102900000, guid: 80f5da7f9960dfb45864766dc3dbd624, type: 3}
     scenePath: Assets/Game/Scenes/UI.unity

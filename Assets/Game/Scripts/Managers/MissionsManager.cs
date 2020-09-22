@@ -81,10 +81,11 @@ public class MissionsManager : Singleton<MissionsManager>
     //private float _mTimerStartTime = 0;
     [SerializeField] TMPro.TextMeshProUGUI _mTimerDisplayText;
 
-    void Start()
+    void Awake()
     {
         GenerateNewMissions();
         _mTimerDisplayText.text = "";
+        NPCManager.Instance.mGameModeChanged.AddListener(StartTimer);
     }
 
     private void Update()
@@ -100,7 +101,7 @@ public class MissionsManager : Singleton<MissionsManager>
 
         if (_mStartTimer)
         {
-            if (_mServerMissionTime <= Time.time)
+            if (_mServerMissionTime >= Time.time)
             {
                 float timeRemaining = _mServerMissionTime - Time.time;
                 float minutes = Mathf.FloorToInt(timeRemaining / 60);
@@ -170,15 +171,16 @@ public class MissionsManager : Singleton<MissionsManager>
             _mMissionProgress += mission.MissionProgress;
         }
 
+        mMissionsMenu.mprogressText.text = _mMissionProgress + " / " + _mTotalMissionProgress;
         _mCompletionPercentage = ((float)_mMissionProgress / (float)_mTotalMissionProgress) * 100;
 
         if (_mCompletionPercentage >= 100)
         {
-            //GameWinScreen
+            OnTimeOver();
         }
     }
 
-    public void StartTimer()
+    public void StartTimer(GameMode gameMode)
     {
         //_mTimerStartTime = Time.time;   // Set the mission start time
         _mServerMissionTime *= 60;   // Set the mission duration in seconds
@@ -186,17 +188,16 @@ public class MissionsManager : Singleton<MissionsManager>
         _mStartTimer = true;
     }
 
-    public void OnTimeOver()
+    public void OnTimeOver(GameEndReason pReason = GameEndReason.TimeUp)
     {
         if (_mCompletionPercentage >= _mMinWinPercentage)
         {
-            //GameWinScreen            
-            Debug.Log("YOU HAVE WON");
+            pReason = GameEndReason.MissionsOver;
+            GameManager.Instance.EndGame(EndMenu.Result.Won, pReason, _mServerMissionTime.ToString(), _mCompletionPercentage);
         }
         else
         {
-            //GameLostScreen
-            Debug.Log("YOU HAVE LOST");
+            GameManager.Instance.EndGame(EndMenu.Result.Lost, pReason, _mServerMissionTime.ToString(), _mCompletionPercentage);
         }
     }
 }
