@@ -28,11 +28,28 @@ public class CompanyNPC : MonoBehaviour
     public PlayerDialog mPlayerDialog;
     Material mMatCopy;
     public NPCMission mNPCMission;
+    [HideInInspector]
+    public int mTableIx = -1;
+    [HideInInspector]
+    public int mBarIx = -1;
     void Start()
     {
         NPCManager.Instance.mTotalNPCs.Add(this);
         mNPCProps = mNPCMode == NPCType.MissionNPC ? NPCManager.Instance.GetMissionNPC() :
             NPCManager.Instance.GetNormalNPC();
+        NPCProps aProp = new NPCProps();
+        aProp.mBarWaitTime = mNPCProps.mBarWaitTime;
+        aProp.mColor = mNPCProps.mColor;
+        aProp.mCorrectDrinkMultiplier = mNPCProps.mCorrectDrinkMultiplier;
+        aProp.mDrunkThreshold = mNPCProps.mDrunkThreshold;
+        aProp.mIncorrectDrinkMultiplier = mNPCProps.mIncorrectDrinkMultiplier;
+        aProp.mInebriationState = mNPCProps.mInebriationState;
+        aProp.mMaxDrinksAtBar = mNPCProps.mMaxDrinksAtBar;
+        aProp.mNPCType = mNPCProps.mNPCType;
+        aProp.mPassoutThreshold = mNPCProps.mPassoutThreshold;
+        aProp.mPreferredDrinks = new List<DrinkBase>(mNPCProps.mPreferredDrinks);
+        aProp.mServerWaitTime = mNPCProps.mServerWaitTime;
+        mNPCProps = aProp;
         mMatCopy = mRenderer.material;
         mMatCopy.SetColor("_Color4", mNPCProps.mColor);
         mRenderer.material = mMatCopy;

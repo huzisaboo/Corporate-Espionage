@@ -368,7 +368,7 @@ MonoBehaviour:
     mOffset: {x: 0.5, y: 0.25, z: 0}
   mObstacleLayers:
     serializedVersion: 2
-    m_Bits: 1792
+    m_Bits: 768
 --- !u!1 &3423780387817155883
 GameObject:
   m_ObjectHideFlags: 0

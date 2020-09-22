@@ -34,6 +34,11 @@ public class IdleState : BaseNPCState
         mCurrentIdleTime = 0.0f;
         SetIdleState(-1);
         mTriggerSet = false;
+        if(mCompanyNPC.mTableIx != -1)
+        {
+            NPCManager.Instance.mPoI.Remove(mCompanyNPC.mTableIx);
+            mCompanyNPC.mTableIx = -1;
+        }
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

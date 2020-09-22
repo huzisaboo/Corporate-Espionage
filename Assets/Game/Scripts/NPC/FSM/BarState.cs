@@ -129,6 +129,9 @@ public class BarState : BaseNPCState
         mFSM.SetTrigger(mTableHash);
         mStateTriggered = true;
         NPCManager.Instance.mVisitedBar.Add(mCompanyNPC);
+        NPCManager.Instance.mNPCsAtBar--;
+        NPCManager.Instance.mBL.Remove(mCompanyNPC.mBarIx);
+        mCompanyNPC.mBarIx = -1;
     }
 
     void NPCAttended()
@@ -164,6 +167,9 @@ public class BarState : BaseNPCState
             mFSM.SetTrigger(mPassoutHash);
             NPCManager.Instance.mVisitedBar.Add(mCompanyNPC);
             mStateTriggered = true;
+            NPCManager.Instance.mNPCsAtBar--;
+            NPCManager.Instance.mBL.Remove(mCompanyNPC.mBarIx);
+            mCompanyNPC.mBarIx = -1;
         }
         else if (mDrinksAtBar >= mCompanyNPC.mNPCProps.mMaxDrinksAtBar)
         {
