@@ -28,7 +28,7 @@ public class Department
     public List<Mission> missions = new List<Mission>();
 }
 
-public class MissionsMenu : MonoBehaviour //: Menu
+public class MissionsMenu : Menu
 {
     public List<Department> mDepartments = new List<Department>();
 }

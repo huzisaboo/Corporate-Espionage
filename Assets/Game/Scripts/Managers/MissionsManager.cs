@@ -64,12 +64,54 @@ public class MissionsManager : Singleton<MissionsManager>
 
     public MissionsMenu mMissionsMenu;
 
+    //Mission Variables
+    public MenuClassifier mMissionMenuClassifier;
     //[SerializeField]
     private int _mDeptMissionCount = 2; //Hardcoded mission count
+
+    private int _mMissionProgress = 0;
+    private int _mTotalMissionProgress = 0;
+    private float _mCompletionPercentage = 0;
+    [SerializeField] private float _mMinWinPercentage = 50;
+
+    //Timer
+    [Tooltip("Server mission time in minutes")]
+    [SerializeField]private float _mServerMissionTime = 6f; //minutes
+    private bool _mStartTimer = false;
+    //private float _mTimerStartTime = 0;
+    [SerializeField] UnityEngine.UI.Text _mTimerDisplayText;
 
     void Start()
     {
         GenerateNewMissions();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.BackQuote))
+        {
+            MenuManager.Instance.ShowMenu(mMissionMenuClassifier);
+        }
+        if (Input.GetKeyUp(KeyCode.Tab) || Input.GetKeyUp(KeyCode.BackQuote))
+        { 
+            MenuManager.Instance.HideMenu(mMissionMenuClassifier);
+        }
+
+        if (_mStartTimer)
+        {
+            if (_mServerMissionTime <= Time.time)
+            {
+                float timeRemaining = _mServerMissionTime - Time.time;
+                float minutes = Mathf.FloorToInt(timeRemaining / 60);
+                float seconds = Mathf.FloorToInt(timeRemaining % 60);
+                _mTimerDisplayText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+            }
+            else
+            {
+                _mStartTimer = false;
+                OnTimeOver();
+            }
+        }
     }
 
     public void GenerateNewMissions()
@@ -94,6 +136,7 @@ public class MissionsManager : Singleton<MissionsManager>
                 mMissionsMenu.mDepartments[i].missions[count].DepartmentMission1Progress.value = 0;
                 playerMission.OnChangeProgress += mMissionsMenu.mDepartments[i].missions[count].UpdateProgress;
                 count++;
+                _mTotalMissionProgress += PlayerMission.missionProgressMax;
             }
         }
 
@@ -119,6 +162,37 @@ public class MissionsManager : Singleton<MissionsManager>
     }
 
     public void UpdateMissionProgress()
-    { 
+    {
+        _mMissionProgress = 0;
+        foreach (PlayerMission mission in mPlayerMissions)
+        {
+            _mMissionProgress += mission.MissionProgress;
+        }
+
+        _mCompletionPercentage = ((float)_mMissionProgress / (float)_mTotalMissionProgress) * 100;
+
+        if (_mCompletionPercentage >= 100)
+        {
+            //GameWinScreen
+        }
+    }
+
+    public void StartTimer()
+    {
+        //_mTimerStartTime = Time.time;   // Set the mission start time
+        _mServerMissionTime *= 60;   // Set the mission duration in seconds
+        _mServerMissionTime += Time.time;   // Set the mission end time
+    }
+
+    public void OnTimeOver()
+    {
+        if (_mCompletionPercentage >= _mMinWinPercentage)
+        {
+            //GameWinScreen            
+        }
+        else
+        {
+            //GameLostScreen
+        }
     }
 }
