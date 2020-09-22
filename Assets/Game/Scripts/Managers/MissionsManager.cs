@@ -81,10 +81,11 @@ public class MissionsManager : Singleton<MissionsManager>
     //private float _mTimerStartTime = 0;
     [SerializeField] TMPro.TextMeshProUGUI _mTimerDisplayText;
 
-    void Start()
+    void Awake()
     {
         GenerateNewMissions();
         _mTimerDisplayText.text = "";
+        NPCManager.Instance.mGameModeChanged.AddListener(StartTimer);
     }
 
     private void Update()
@@ -100,7 +101,7 @@ public class MissionsManager : Singleton<MissionsManager>
 
         if (_mStartTimer)
         {
-            if (_mServerMissionTime <= Time.time)
+            if (_mServerMissionTime >= Time.time)
             {
                 float timeRemaining = _mServerMissionTime - Time.time;
                 float minutes = Mathf.FloorToInt(timeRemaining / 60);
@@ -170,6 +171,7 @@ public class MissionsManager : Singleton<MissionsManager>
             _mMissionProgress += mission.MissionProgress;
         }
 
+        mMissionsMenu.mprogressText.text = _mMissionProgress + " / " + _mTotalMissionProgress;
         _mCompletionPercentage = ((float)_mMissionProgress / (float)_mTotalMissionProgress) * 100;
 
         if (_mCompletionPercentage >= 100)
@@ -178,7 +180,7 @@ public class MissionsManager : Singleton<MissionsManager>
         }
     }
 
-    public void StartTimer()
+    public void StartTimer(GameMode gameMode)
     {
         //_mTimerStartTime = Time.time;   // Set the mission start time
         _mServerMissionTime *= 60;   // Set the mission duration in seconds

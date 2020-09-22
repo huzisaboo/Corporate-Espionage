@@ -30,5 +30,6 @@ public class Department
 
 public class MissionsMenu : Menu
 {
+    public TMPro.TextMeshProUGUI mprogressText;
     public List<Department> mDepartments = new List<Department>();
 }
