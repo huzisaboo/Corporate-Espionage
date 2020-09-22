@@ -23,7 +23,7 @@ public class NPCProps : ScriptableObject
     public float mIncorrectDrinkMultiplier;
     public List<DrinkBase> mPreferredDrinks;
     public Color mColor;
-    public NPCDepartment mNPCDepartment;
-    [HideInInspector]
-    public NPCMission mNPCMission;
+    //public NPCDepartment mNPCDepartment;
+    //[HideInInspector]
+    //public NPCMission mNPCMission;
 }
