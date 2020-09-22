@@ -58,7 +58,7 @@ public class BarState : BaseNPCState
         mStateTriggered = false;
         mCompanyNPC.mPlayerUI.gameObject.SetActive(true);
         mCompanyNPC.mPlayerUI.mTimerImage.gameObject.SetActive(true);
-        mCompanyNPC.mPlayerUI.mDrinkImage.gameObject.SetActive(true);
+        mCompanyNPC.mPlayerUI.mDrinkImage.transform.parent.gameObject.SetActive(true);
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -201,7 +201,7 @@ public class BarState : BaseNPCState
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         mCompanyNPC.mPlayerUI.mDrinkImage.color = Color.white;
-        mCompanyNPC.mPlayerUI.mDrinkImage.gameObject.SetActive(false);
+        mCompanyNPC.mPlayerUI.mDrinkImage.transform.parent.gameObject.SetActive(false);
         mCompanyNPC.mPlayerUI.mTimerImage.gameObject.SetActive(false);
         mCompanyNPC.mPlayerUI.gameObject.SetActive(false);
     }

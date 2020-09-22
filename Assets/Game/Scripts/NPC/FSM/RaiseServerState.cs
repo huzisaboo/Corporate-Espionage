@@ -37,7 +37,7 @@ public class RaiseServerState : BaseNPCState
         mCompanyNPC.mAnimator.SetTrigger(mRaiseServerHash);
         mCompanyNPC.mPlayerUI.gameObject.SetActive(true);
         mCompanyNPC.mPlayerUI.mTimerImage.gameObject.SetActive(true);
-        mCompanyNPC.mPlayerUI.mDrinkImage.gameObject.SetActive(true);
+        mCompanyNPC.mPlayerUI.mDrinkImage.transform.parent.gameObject.SetActive(true);
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -54,6 +54,7 @@ public class RaiseServerState : BaseNPCState
         mCompanyNPC.mPlayerUI.mTimerImage.fillAmount = (mCompanyNPC.mNPCProps.mServerWaitTime - mCurrentServerWaitTime) / mCompanyNPC.mNPCProps.mServerWaitTime;
         if (mCurrentServerWaitTime >= mCompanyNPC.mNPCProps.mServerWaitTime)
         {
+            NPCManager.Instance.mRaiseServer--;
             MissionsManager.Instance.OnTimeOver(GameEndReason.Spotted);
         }
         else
@@ -61,6 +62,7 @@ public class RaiseServerState : BaseNPCState
             if (Physics.OverlapSphere(mCompanyNPC.transform.position, mServerRadius, mServerMask).Length > 0)
             {
                 animator.SetTrigger(mResetHash);
+                NPCManager.Instance.mRaiseServer--;
                 mCompanyNPC.mAnimator.SetTrigger(mServerEndHash);
                 mStateTriggered = true;
             }
@@ -69,7 +71,7 @@ public class RaiseServerState : BaseNPCState
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        mCompanyNPC.mPlayerUI.mDrinkImage.gameObject.SetActive(false);
+        mCompanyNPC.mPlayerUI.mDrinkImage.transform.parent.gameObject.SetActive(false);
         mCompanyNPC.mPlayerUI.mTimerImage.gameObject.SetActive(false);
         mCompanyNPC.mPlayerUI.gameObject.SetActive(false);
     }
