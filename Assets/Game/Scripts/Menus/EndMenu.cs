@@ -51,7 +51,7 @@ public class EndMenu : Menu
 
     public void MissionsCompleted(int completedCount,int totalCount)
     {
-        m_missionCompleted.text = m_completedMessage + completedCount.ToString() + "/" + totalCount.ToString();
+        m_missionCompleted.text = m_missionCompString + completedCount.ToString() + "/" + totalCount.ToString();
     }
 
     public void DisplayResult(GameManager.Result p_result)

@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private CharacterController m_controller;
     private Animator m_animator;
+    private Vector3 m_velocity;
     void Start()
     {
-        m_controller = GetComponent<CharacterController>();
         m_animator = GetComponent<Animator>();
     }
 
@@ -18,15 +17,20 @@ public class PlayerController : MonoBehaviour
     }
 
     private void MovementUpdate()
-    {
-        Vector3 movement = new Vector3(InputManager.Instance.GetXValue(), 0, InputManager.Instance.GetYValue());
+    { 
+        Vector3 a_cameraForward = Camera.main.transform.forward;
+        Vector3 a_cameraRight = Camera.main.transform.right;
 
-        if (m_animator != null)
+        Vector3 a_translation = InputManager.Instance.GetYValue() * a_cameraForward;
+        a_translation += InputManager.Instance.GetXValue() * a_cameraRight;
+        a_translation.y = 0;        //Since camera can point itself upwards and downwards, we do not want the character to orient itself in that direction so ignoring Y values
+        if (a_translation.magnitude > 0)
         {
-            m_animator.SetFloat("Speed", movement.magnitude);
-           if(movement != Vector3.zero)
+            m_velocity = a_translation;
+            transform.forward = m_velocity;
+            if(m_animator != null)
             {
-                transform.forward = movement;
+                m_animator.SetFloat("Speed", m_velocity.magnitude);
             }
         }
     }
