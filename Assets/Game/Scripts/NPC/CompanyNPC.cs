@@ -28,6 +28,11 @@ public class CompanyNPC : MonoBehaviour
     public PlayerDialog mPlayerDialog;
     Material mMatCopy;
     public NPCMission mNPCMission;
+    [HideInInspector]
+    public int mTableIx = -1;
+    [HideInInspector]
+    public int mBarIx = -1;
+    [HideInInspector] public float mInebriationState = 0.0f;
     void Start()
     {
         NPCManager.Instance.mTotalNPCs.Add(this);
@@ -64,7 +69,7 @@ public class CompanyNPC : MonoBehaviour
 
     void SetDialogSymbol(GameMode pMode)
     {
-        mPlayerDialog.symbolDisplayFactor *= (1 - mNPCProps.mInebriationState);
+        mPlayerDialog.symbolDisplayFactor *= (1 - mInebriationState);
     }
 
 }

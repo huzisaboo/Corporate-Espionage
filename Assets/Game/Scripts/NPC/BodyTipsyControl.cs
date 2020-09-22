@@ -45,14 +45,14 @@ public class BodyTipsyControl : MonoBehaviour
             return;
         }
         mCurDelay = mAnimatorDelay;
-        mCurrentTipsyVal = mNPC.mNPCProps.mInebriationState * ((mMaxTipsyVal - mMinTipsyVal)/mMaxTipsyVal);
+        mCurrentTipsyVal = mNPC.mInebriationState * ((mMaxTipsyVal - mMinTipsyVal)/mMaxTipsyVal);
         float aTipsyHor = Random.Range(-mCurrentTipsyVal, mCurrentTipsyVal);
         float aTipsyVer = Random.Range(-mCurrentTipsyVal, mCurrentTipsyVal);
         SetFloat(mBodyHorHash, 0);
         SetFloat(mBodyVertHash, 0);
         LeanTween.value(mNPC.gameObject, 0, aTipsyHor, mAnimatorDelay).setOnUpdate((pVal) => SetFloat(mBodyHorHash, pVal));
         LeanTween.value(mNPC.gameObject, 0, aTipsyVer, mAnimatorDelay).setOnUpdate((pVal) => SetFloat(mBodyVertHash, pVal));
-        mNPC.mAnimator.SetLayerWeight(1, mNPC.mNPCProps.mInebriationState);
+        mNPC.mAnimator.SetLayerWeight(1, mNPC.mInebriationState);
     }
     void SetFloat(int pHash, float pVal)
     {

@@ -19,17 +19,11 @@ public class GameManager : Singleton<GameManager>
         Game
     }
 
-    public enum Result
-    {
-        Won,
-        Lost
-    }
-
     public SceneReference mGameScene;
     public SceneReference mUIScene;
+    public MenuClassifier mGameEndMenu;
     [HideInInspector] public State mState = State.NonGame;
-    public MenuClassifier mEndMenuClassifier;
-    EndMenu mEndMenu;
+    EndMenu mEndGameMenu;
     void Awake()
     {
         LeanTween.init(1000);
@@ -73,8 +67,17 @@ public class GameManager : Singleton<GameManager>
         MultiSceneManager.Instance.LoadScene(mGameScene);
     }
 
-    public void EndGame()
+    public void EndGame(EndMenu.Result pResult, GameEndReason pReason, string pRemainingTime,
+        float pCompletedPercentage)
     {
-        mEndMenu = MenuManager.Instance.GetMenu<EndMenu>(mEndMenuClassifier);
+        if(mEndGameMenu == null)
+        {
+            mEndGameMenu = MenuManager.Instance.GetMenu<EndMenu>(mGameEndMenu);
+        }
+        mEndGameMenu.DisplayEndReason(pReason);
+        mEndGameMenu.DisplayResult(pResult);
+        mEndGameMenu.MissionsCompleted(pCompletedPercentage);
+        mEndGameMenu.DisplayRemainingTime(pRemainingTime);
+        MenuManager.Instance.ShowMenu(mGameEndMenu);
     }
 }

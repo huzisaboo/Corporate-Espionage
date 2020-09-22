@@ -27,6 +27,6 @@ public class DrunkParticleChanger : MonoBehaviour
     void Update()
     {
         mEmissionModule.rateOverTime = new ParticleSystem.
-            MinMaxCurve(mNPC.mNPCProps.mInebriationState * (mMaxParticles - mMinParticles));
+            MinMaxCurve(mNPC.mInebriationState * (mMaxParticles - mMinParticles));
     }
 }

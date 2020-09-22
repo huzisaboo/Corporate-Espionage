@@ -54,7 +54,7 @@ public class RaiseServerState : BaseNPCState
         mCompanyNPC.mPlayerUI.mTimerImage.fillAmount = (mCompanyNPC.mNPCProps.mServerWaitTime - mCurrentServerWaitTime) / mCompanyNPC.mNPCProps.mServerWaitTime;
         if (mCurrentServerWaitTime >= mCompanyNPC.mNPCProps.mServerWaitTime)
         {
-            //game over
+            MissionsManager.Instance.OnTimeOver(GameEndReason.Spotted);
         }
         else
         {

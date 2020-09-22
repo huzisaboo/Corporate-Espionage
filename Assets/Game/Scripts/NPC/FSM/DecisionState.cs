@@ -45,8 +45,11 @@ public class DecisionState : BaseNPCState
             float aRandomizer = Random.value;
             if(aRandomizer > 0.5f)
             {
+                mCompanyNPC.mTableIx = MissionsManager.Instance.GetRandomIntExcluding
+                    (NPCManager.Instance.mPointsOfInterest.Count, NPCManager.Instance.mPoI);
+                NPCManager.Instance.mPoI.Add(mCompanyNPC.mTableIx);
                 mCompanyNPC.mArriveBehavior.CalculateNewPath(NPCManager.Instance.mPointsOfInterest
-                    [Random.Range(0, NPCManager.Instance.mPointsOfInterest.Count)].position);
+                    [mCompanyNPC.mTableIx].position);
                 animator.SetTrigger(mTableHash);
             }
             else
@@ -62,7 +65,7 @@ public class DecisionState : BaseNPCState
         {
             return false;
         }
-        if(mCompanyNPC.mNPCProps.mInebriationState > mCompanyNPC.mNPCProps.mDrunkThreshold)
+        if(mCompanyNPC.mInebriationState > mCompanyNPC.mNPCProps.mDrunkThreshold)
         {
             return false;
         }
@@ -71,8 +74,9 @@ public class DecisionState : BaseNPCState
             return false;
         }
         NPCManager.Instance.mNPCsAtBar++;
-        mCompanyNPC.mArriveBehavior.CalculateNewPath(NPCManager.Instance.mBarLocation
-            [NPCManager.Instance.mNPCsAtBar - 1].position);
+        mCompanyNPC.mBarIx = MissionsManager.Instance.GetRandomIntExcluding(NPCManager.Instance.mBarLocation.Count, NPCManager.Instance.mBL);
+        NPCManager.Instance.mBL.Add(mCompanyNPC.mBarIx);
+        mCompanyNPC.mArriveBehavior.CalculateNewPath(NPCManager.Instance.mBarLocation[mCompanyNPC.mBarIx].position);
         pFSM.SetTrigger(mGoToBarHash);
         return true;
     }
