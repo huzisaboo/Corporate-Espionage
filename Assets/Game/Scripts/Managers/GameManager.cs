@@ -59,6 +59,11 @@ public class GameManager : Singleton<GameManager>
 
     void OnSceneUnload(List<string> pUnloadedScenes)
     {
+        if(pUnloadedScenes.Contains(mGameScene))
+        {
+            mState = State.NonGame;
+            MenuManager.Instance.ShowMenu(mGameEndMenu);
+        }
     }
 
     public void StartGame()
@@ -79,7 +84,5 @@ public class GameManager : Singleton<GameManager>
         mEndGameMenu.MissionsCompleted(pCompletedPercentage);
         mEndGameMenu.DisplayRemainingTime(pRemainingTime);
         MultiSceneManager.Instance.UnloadScene(mGameScene);
-        mState = State.NonGame;
-        MenuManager.Instance.ShowMenu(mGameEndMenu);
     }
 }

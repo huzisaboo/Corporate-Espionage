@@ -946,7 +946,7 @@ MonoBehaviour:
   m_completedMessage: All missions completed!
   m_timeupMessage: You ran out of time!
   m_spottedMessage: You were spotted by the employee!
-  m_mainMenuPanel: {fileID: 0}
+  m_mainMenuPanel: {fileID: 11400000, guid: 807eb58c4b3f40149bc0118190b86ff5, type: 2}
   m_gameEndReasonText: {fileID: 2024549055}
   m_TimeRemaining: {fileID: 598537147}
   m_missionCompleted: {fileID: 188628486}
