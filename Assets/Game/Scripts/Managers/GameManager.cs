@@ -45,6 +45,7 @@ public class GameManager : Singleton<GameManager>
             return;
         }
         MultiSceneManager.Instance.LoadScene(mUIScene);
+        AudioManager.Instance.PlaySound("JazzyVibes", true);
     }
 
     void OnDestroy()
