@@ -679,8 +679,8 @@ MonoBehaviour:
     sceneAsset: {fileID: 102900000, guid: 80f5da7f9960dfb45864766dc3dbd624, type: 3}
     scenePath: Assets/Game/Scenes/UI.unity
     sceneName: UI
+  mGameEndMenu: {fileID: 11400000, guid: ad60403bb278ff247a6054b3f58f2078, type: 2}
   mState: 0
-  mEndMenuClassifier: {fileID: 11400000, guid: ad60403bb278ff247a6054b3f58f2078, type: 2}
 --- !u!1 &1356532784
 GameObject:
   m_ObjectHideFlags: 0

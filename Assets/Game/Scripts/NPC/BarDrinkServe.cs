@@ -14,12 +14,18 @@ public class BarDrinkServe : MonoBehaviour
 {
     public Image mTimerImage;
     public Image mDrinkImage;
-
+    Camera mMainCamera;
     void Start()
     {
         mDrinkImage.color = Color.white;
         mTimerImage.gameObject.SetActive(false);
-        mDrinkImage.gameObject.SetActive(false);
+        mDrinkImage.transform.parent.gameObject.SetActive(false);
         gameObject.SetActive(false);
+        mMainCamera = Camera.main;
+    }
+
+    void Update()
+    {
+        transform.LookAt(mMainCamera.transform.position, transform.up);
     }
 }

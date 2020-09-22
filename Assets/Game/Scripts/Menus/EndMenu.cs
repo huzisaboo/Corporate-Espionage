@@ -23,7 +23,7 @@ public class EndMenu : Menu
     [SerializeField] string m_spottedMessage = "You were spotted by the employee!";
     
     [Header("End Menu Variables")]
-    [SerializeField] GameObject m_mainMenuPanel;
+    [SerializeField] MenuClassifier m_mainMenuPanel;
     [SerializeField] Text m_gameEndReasonText;
     [SerializeField] Text m_TimeRemaining;
     [SerializeField] Text m_missionCompleted;
@@ -32,8 +32,8 @@ public class EndMenu : Menu
 
     public void BackToMainMenu()
     {
-        gameObject.SetActive(false);
-        m_mainMenuPanel.SetActive(true);
+        MenuManager.Instance.HideMenu(mMenuClassifier);
+        MenuManager.Instance.ShowMenu(m_mainMenuPanel);
     }
 
     public void DisplayEndReason(GameEndReason p_reason)
@@ -59,7 +59,7 @@ public class EndMenu : Menu
 
     public void MissionsCompleted(float completedPercentage)
     {
-        m_missionCompleted.text = m_completedMessage + completedPercentage.ToString();
+        m_missionCompleted.text = m_missionCompString + completedPercentage.ToString();
     }
 
     public void DisplayResult(Result p_result)

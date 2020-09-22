@@ -33,7 +33,7 @@ public class GameManager : Singleton<GameManager>
     {
         MultiSceneManager.Instance.mOnSceneLoad.AddListener(OnSceneLoad);
         MultiSceneManager.Instance.mOnSceneUnload.AddListener(OnSceneUnload);
-        if(string.IsNullOrEmpty(mUIScene)) //remove after testing
+        if (string.IsNullOrEmpty(mUIScene)) //remove after testing
         {
             mState = State.Game;
             return;
@@ -70,7 +70,7 @@ public class GameManager : Singleton<GameManager>
     public void EndGame(EndMenu.Result pResult, GameEndReason pReason, string pRemainingTime,
         float pCompletedPercentage)
     {
-        if(mEndGameMenu == null)
+        if (mEndGameMenu == null)
         {
             mEndGameMenu = MenuManager.Instance.GetMenu<EndMenu>(mGameEndMenu);
         }
@@ -78,6 +78,8 @@ public class GameManager : Singleton<GameManager>
         mEndGameMenu.DisplayResult(pResult);
         mEndGameMenu.MissionsCompleted(pCompletedPercentage);
         mEndGameMenu.DisplayRemainingTime(pRemainingTime);
+        MultiSceneManager.Instance.UnloadScene(mGameScene);
+        mState = State.NonGame;
         MenuManager.Instance.ShowMenu(mGameEndMenu);
         MultiSceneManager.Instance.UnloadScene(mGameScene);
         mState = State.NonGame;
